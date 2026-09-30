@@ -16,4 +16,4 @@ tags: []
 The sender is a relative who has recently travelled to all 10 provinces and 3 territories,
 and made this adventure backpack from their travels.
 
-Which relative is not decided yet (Q-005).
+The sender is a retired couple, the parents (Q-005).

@@ -2,6 +2,16 @@
 
 Update at the end of every session. Newest entry on top. Refer to records by ID.
 
+## 2026-09-30: lock types
+- **Worked on:** brainstorm of the Canada backpack; lock weights.
+- **Answered:** Q-001 (keep the four defaults: 6x 3-digit, 4x colour, 3x 4-digit, 2x 4-letter; locks numbered 1-15).
+- **Idea, not yet recorded:** meta-puzzle for the final locks (Q-003). Postcards were rejected to stay different from Norse.
+- **Answered also:** Q-005 (retired parents are the sender; PR-001 still a candidate).
+- **Decided:** PR-005 (parents' travel backpack), PR-006 (travel-book pages + souvenirs/facts), PR-007 (playful tone), PR-008 (chronological, congratulation notes).
+- **Answered:** Q-006.
+- **Idea, not yet recorded:** map + ruler distance puzzle (3-digit lock).
+- **Next step:** Q-004 (a fact per province/territory) or Q-003 (final locks).
+
 ## 2026-09-30: project set up from the seed
 - **Worked on:** repo created; seed notes from backpack-kit/seeds/canada.md turned into records.
 - **Decided:** PR-003 (15 locks: one per province/territory plus two final; a different puzzle type per stop).
