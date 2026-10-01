@@ -10,7 +10,8 @@ Update at the end of every session. Newest entry on top. Refer to records by ID.
 - **Decided:** PR-005 (parents' travel backpack), PR-006 (travel-book pages + souvenirs/facts), PR-007 (playful tone), PR-008 (chronological, congratulation notes).
 - **Answered:** Q-006.
 - **Idea, not yet recorded:** map + ruler distance puzzle (3-digit lock).
-- **Next step:** Q-004 (a fact per province/territory) or Q-003 (final locks).
+- **Drafted:** Q-004 now has a 13-row candidate list (unverified), still open.
+- **Next step:** verify the facts and confirm the route order (Q-004), or Q-003 (final locks).
 
 ## 2026-09-30: project set up from the seed
 - **Worked on:** repo created; seed notes from backpack-kit/seeds/canada.md turned into records.
