@@ -2,6 +2,13 @@
 
 Update at the end of every session. Newest entry on top. Refer to records by ID.
 
+## 2026-10-03: external mockup added
+- **Worked on:** added `the-long-way-home.html`, a playable browser mockup made with another AI model.
+- **Not decisions:** it differs from the records (single 19-year-old traveller in 1967, not the parents;
+  2-digit passport cells and one 3-digit final lock instead of the Q-001 split; its own set of facts).
+  Treat it as a source of puzzle ideas only. Nothing in it has been written into records.
+- **Next step:** unchanged (Q-004 or Q-003); optionally mine the mockup for candidate puzzles.
+
 ## 2026-09-30: lock types
 - **Worked on:** brainstorm of the Canada backpack; lock weights.
 - **Answered:** Q-001 (keep the four defaults: 6x 3-digit, 4x colour, 3x 4-digit, 2x 4-letter; locks numbered 1-15).

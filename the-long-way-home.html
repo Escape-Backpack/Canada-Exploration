@@ -1,0 +1,1705 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>[hidden]{display:none!important}img{max-width:100%}</style></head><body>
+<title>The Long Way Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a worn rucksack as navigation — pockets down the left, the open souvenir on the right, passport + coin purse across the top. */
+:root{
+  --paper:#e8eae2;
+  --paper-2:#dcdfd5;
+  --card:#f5f6f0;
+  --ink:#1c2520;
+  --muted:#58625b;
+  --rule:rgba(28,37,32,.17);
+  --canvas:#6a6943;
+  --canvas-deep:#4b4a2f;
+  --canvas-ink:#f0eedf;
+  --tag:#dcc78f;
+  --tag-ink:#2b2414;
+  --stamp:#45307c;
+  --red:#b31f2d;
+  --good:#2c6a45;
+  --bad:#9c3a27;
+  --hi:rgba(69,48,124,.12);
+  --f-display:"Zilla Slab",Rockwell,"Roboto Slab",Georgia,serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161a17;--paper-2:#1d221e;--card:#222823;--ink:#e2e6dc;--muted:#9ba49c;
+    --rule:rgba(226,230,220,.16);--canvas:#7c7a50;--canvas-deep:#3a3a24;--canvas-ink:#f0eedf;
+    --tag:#cdb87f;--tag-ink:#2b2414;--stamp:#a996ea;--red:#e2575f;--good:#6cc28d;--bad:#e58a73;
+    --hi:rgba(169,150,234,.14);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161a17;--paper-2:#1d221e;--card:#222823;--ink:#e2e6dc;--muted:#9ba49c;
+  --rule:rgba(226,230,220,.16);--canvas:#7c7a50;--canvas-deep:#3a3a24;--canvas-ink:#f0eedf;
+  --tag:#cdb87f;--tag-ink:#2b2414;--stamp:#a996ea;--red:#e2575f;--good:#6cc28d;--bad:#e58a73;
+  --hi:rgba(169,150,234,.14);color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--f-body);font-size:16.5px;line-height:1.55;margin:0;padding-inline:16px;padding-block:0 60px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+.mono{font-family:var(--f-mono)}
+.hand{font-family:var(--f-hand)}
+.lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* ---------- top: tag, purse, passport ---------- */
+.top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;padding-block:28px 22px;align-items:start}
+@media(max-width:820px){.top{grid-template-columns:1fr}}
+.tagwrap{display:flex;gap:18px;align-items:flex-start}
+.tag{position:relative;background:var(--tag);color:var(--tag-ink);padding:22px 22px 20px 34px;max-width:430px;
+  clip-path:polygon(18px 0,100% 0,100% 100%,18px 100%,0 calc(100% - 18px),0 18px);transform:rotate(-1.6deg)}
+.tag::before{content:"";position:absolute;left:12px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;
+  background:var(--paper);box-shadow:inset 0 0 0 3px rgba(43,36,20,.35)}
+.tag p{font-family:var(--f-hand);font-size:22px;line-height:1.25;margin:0}
+.tag .sig{display:block;text-align:right;margin-top:8px;font-size:20px}
+.title-block h1{font-size:clamp(34px,6vw,58px);letter-spacing:-.01em;margin-top:4px}
+.title-block p{color:var(--muted);margin:8px 0 0;max-width:52ch}
+.howto{margin-top:14px;font-size:15px;color:var(--muted);max-width:60ch}
+.howto b{color:var(--ink);font-weight:600}
+
+.side-tools{display:grid;gap:16px}
+.purse{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.coins{display:flex;gap:6px;flex-wrap:wrap}
+.coin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:9px;
+  background:radial-gradient(circle at 35% 30%,#d9c6a0,#9b7f4c);color:#2b2414;border:1px solid rgba(43,36,20,.4)}
+.coin.spent{background:transparent;border:1px dashed var(--rule);color:transparent}
+.ppstrip{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:4px}
+.ppslot{aspect-ratio:1;border:1px dashed var(--rule);border-radius:50%;display:grid;place-items:center;
+  font-family:var(--f-mono);font-size:9px;color:var(--muted);background:transparent;padding:0}
+.ppslot.done{border:2px solid var(--stamp);color:var(--stamp);font-weight:600;font-size:12px;transform:rotate(-8deg)}
+
+/* ---------- body layout ---------- */
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;align-items:start;border-top:1px solid var(--rule);padding-top:22px}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+nav.bag{position:sticky;top:env(safe-area-inset-top,0px);background:var(--canvas);color:var(--canvas-ink);border-radius:14px 14px 6px 6px;
+  padding:14px 12px 16px;box-shadow:inset 0 0 0 2px rgba(0,0,0,.12)}
+@media(max-width:820px){nav.bag{position:static}}
+.pocket{margin-top:12px}
+.pocket:first-child{margin-top:0}
+.pocket h3{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  color:var(--canvas-ink);opacity:.82;padding:6px 6px 5px;border-bottom:1px dashed rgba(240,238,223,.35);margin-bottom:4px}
+.pocket h3 small{display:block;font-size:9.5px;letter-spacing:.08em;opacity:.8;text-transform:none;font-weight:400;margin-top:2px}
+.navbtn{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;border:0;background:transparent;
+  color:var(--canvas-ink);padding:6px 8px;border-radius:6px;font-family:var(--f-display);font-weight:600;font-size:15.5px;gap:8px}
+.navbtn:hover{background:rgba(0,0,0,.14)}
+.navbtn[aria-current="true"]{background:var(--canvas-ink);color:var(--canvas-deep)}
+.navbtn .st{font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.06em;opacity:.9;white-space:nowrap}
+.navbtn .st.ok{border:1.5px solid currentColor;border-radius:50%;width:20px;height:20px;display:grid;place-items:center;transform:rotate(-8deg)}
+
+/* ---------- stage ---------- */
+#stage{min-width:0}
+.ph{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.ph h2{font-size:clamp(26px,4vw,36px)}
+.ph .where{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--canvas)}
+.souv{margin:14px 0 18px;max-width:68ch}
+.souv b{font-weight:600}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:980px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;min-width:0}
+.card h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
+.note{font-family:var(--f-hand);font-size:21px;line-height:1.3}
+.stack{display:grid;gap:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--ink);background:transparent;padding:7px 13px;border-radius:6px;font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em}
+.btn:hover{background:var(--hi)}
+.btn.primary{background:var(--stamp);border-color:var(--stamp);color:var(--card)}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn[disabled]{opacity:.4;cursor:default}
+.msg{min-height:1.5em;font-size:15px;margin-top:8px}
+.msg.good{color:var(--good)} .msg.bad{color:var(--bad)}
+svg text{font-family:var(--f-mono)}
+.svgbox{width:100%;height:auto;display:block;max-width:100%}
+.scroll-x{overflow-x:auto}
+details.ref{border-top:1px solid var(--rule);padding:8px 0}
+details.ref summary{cursor:pointer;font-family:var(--f-display);font-weight:600;font-size:17px}
+details.ref dl{margin:8px 0 0;font-size:15px}
+details.ref dt{font-weight:600;margin-top:6px}
+details.ref dd{margin:0;color:var(--muted)}
+
+/* journal + hints + passport (shared below each puzzle) */
+.below{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;margin-top:22px;align-items:start}
+@media(max-width:980px){.below{grid-template-columns:1fr}}
+.journal{background:var(--paper-2);border-radius:8px;padding:16px 18px;border-left:4px solid var(--canvas)}
+.journal .entry{font-family:var(--f-hand);font-size:23px;line-height:1.28;margin:4px 0 10px}
+.htab{border-top:1px dashed var(--rule);padding:9px 0}
+.htab .hl{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.htab p{margin:6px 0 0;font-size:15.5px}
+.passport{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;position:relative;overflow:hidden}
+.passport::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(135deg,transparent 0 9px,var(--hi) 9px 10px);opacity:.5}
+.passport>*{position:relative;z-index:1}
+.ppin{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.ppin input{width:4.2ch;font-family:var(--f-mono);font-size:26px;text-align:center;padding:4px 4px;border:1px solid var(--ink);
+  border-radius:6px;background:var(--paper);letter-spacing:.08em}
+.stampbox{display:flex;gap:14px;align-items:center;margin-top:12px;min-height:96px}
+.stampbox svg{width:96px;height:96px;flex:0 0 auto}
+@media (prefers-reduced-motion:no-preference){
+  .stampbox svg.new{animation:thump .38s cubic-bezier(.2,.9,.3,1.3)}
+  @keyframes thump{from{transform:scale(1.5) rotate(-14deg);opacity:0}to{transform:scale(1) rotate(-9deg);opacity:1}}
+}
+
+/* NL rack */
+.rack{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;background:#2f4b40;padding:10px;border-radius:6px}
+.hole{border:0;padding:0;background:#18261f;border-radius:3px;display:flex;flex-direction:column;align-items:stretch;min-width:0}
+.hole .win{aspect-ratio:1;position:relative;overflow:hidden;border-radius:2px}
+.hole .win svg{width:100%;height:100%;display:block}
+.hole .empty{position:absolute;inset:0;display:grid;place-items:center;color:#8fa59a;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em}
+.hole .rts{position:absolute;left:3px;bottom:3px;font-family:var(--f-mono);font-size:7.5px;color:#fff;background:rgba(150,30,30,.75);padding:1px 3px;letter-spacing:.06em}
+@media(max-width:560px){.hole .rts{font-size:6px;left:2px;bottom:2px;padding:0 2px}.hole .plate{font-size:8.5px}}
+.hole .who{position:absolute;right:3px;top:3px;font-family:var(--f-hand);font-size:15px;color:#1c2520;background:#f3ead2;padding:0 5px;border-radius:2px}
+.hole .plate{font-family:var(--f-mono);font-size:9.5px;color:#e9d9a5;padding:4px 2px 5px;text-align:center;line-height:1.15;min-height:2.6em}
+.tray{display:flex;gap:8px;flex-wrap:wrap}
+.env{border:1px solid var(--rule);background:#efe6cf;color:#2b2414;border-radius:3px;padding:6px 10px;font-family:var(--f-hand);font-size:19px}
+.env[aria-pressed="true"]{outline:2px solid var(--stamp);outline-offset:1px}
+.env.filed{opacity:.45}
+.letter{background:#f4ecd6;color:#2b2414;padding:16px 18px;border-radius:4px;font-family:var(--f-hand);font-size:21px;line-height:1.3;
+  box-shadow:0 1px 0 rgba(0,0,0,.08)}
+
+/* sortable */
+.sort{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.sort li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--rule);
+  border-radius:6px;padding:8px 10px;min-width:0}
+.sort .mv{display:flex;flex-direction:column;gap:2px}
+.sort .mv button{border:1px solid var(--rule);background:transparent;width:28px;height:22px;border-radius:4px;font-size:11px;line-height:1;padding:0}
+.edge{font-family:var(--f-display);font-weight:700;font-size:22px;width:38px;height:38px;display:grid;place-items:center;
+  background:var(--ink);color:var(--card);border-radius:4px}
+
+/* grids (MB, QC) */
+.cellgrid{display:grid;gap:3px}
+.cell{aspect-ratio:1;border:0;border-radius:3px;display:flex;flex-direction:column;justify-content:space-between;padding:3px 4px;
+  font-family:var(--f-mono);font-size:10px;text-align:left;min-width:0;position:relative}
+.cell .tok{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:15px}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
+.rules li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.rules .ic{font-family:var(--f-mono);font-weight:600}
+.pick{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:5px 12px;font-family:var(--f-mono);font-size:12px}
+.pick[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+
+/* critters */
+.critters{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.crit{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:8px 10px;font-size:13.5px;min-width:0}
+.crit svg{width:100%;height:auto;display:block}
+.crit .tagline{font-family:var(--f-mono);font-size:11.5px;line-height:1.45;color:var(--muted)}
+.crit b{font-family:var(--f-display);font-size:16px}
+.wall{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;background:#7a6646;padding:10px 8px;border-radius:4px}
+.burrow{aspect-ratio:1;border-radius:50%;border:2px solid #3b2d18;background:#2b2116;color:#e7d8b2;font-family:var(--f-mono);font-weight:600;font-size:13px;padding:0}
+.burrow[aria-pressed="true"]{background:#c8b07a;color:#2b2116;border-style:solid}
+
+/* patches */
+.patches{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:12px;background:var(--canvas);padding:16px;border-radius:10px}
+.patch{text-align:center;color:var(--canvas-ink);font-family:var(--f-mono);font-size:10px;letter-spacing:.08em}
+.patch svg{width:100%;height:auto;display:block;margin-bottom:4px}
+.lock{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.wheel{display:flex;flex-direction:column;align-items:center;gap:4px}
+.wheel span{font-family:var(--f-mono);font-size:30px;width:46px;height:52px;display:grid;place-items:center;background:var(--ink);color:var(--card);border-radius:6px}
+.wheel button{width:46px;border:1px solid var(--rule);background:transparent;border-radius:4px;font-size:12px;padding:2px 0}
+
+.cert{border:3px double var(--ink);padding:22px;text-align:center;background:var(--card);border-radius:4px}
+.cert h3{font-size:26px}
+.cert input{font-family:var(--f-hand);font-size:26px;text-align:center;border:0;border-bottom:1px solid var(--ink);background:transparent;width:min(320px,100%)}
+.choice{display:block;width:100%;text-align:left;border:1px solid var(--rule);background:transparent;border-radius:6px;padding:9px 12px;margin-top:6px;font-size:15.5px}
+.choice:hover{background:var(--hi)}
+.finalletter{background:#f4ecd6;color:#2b2414;padding:26px 28px;border-radius:4px;font-family:var(--f-hand);font-size:24px;line-height:1.32;max-width:62ch}
+.finalletter p{margin:0 0 12px}
+
+footer.key{margin-top:48px;border-top:1px solid var(--rule);padding-top:16px;font-size:14.5px;color:var(--muted)}
+.keytable{border-collapse:collapse;font-size:14px;width:100%;margin-top:10px}
+.keytable td,.keytable th{border-bottom:1px solid var(--rule);padding:5px 8px;text-align:left;font-variant-numeric:tabular-nums}
+.keytable th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="stack">
+      <div class="tagwrap">
+        <div class="tag" role="note" aria-label="Luggage tag">
+          <p>I crossed the whole country with this the summer I was nineteen. I kept something from every province and territory, and sewed on a patch wherever I slept. The last pocket's been locked since the night the trip ended.</p>
+          <span class="sig hand">Get further than I did.</span>
+        </div>
+      </div>
+      <div class="title-block">
+        <div class="lbl">Canada Exploration · escape backpack · playtest build</div>
+        <h1>The Long Way Home</h1>
+        <p class="howto"><b>How to play.</b> Open the pockets. Every souvenir resolves to a <b>two-digit number</b>. Look that cell up on the province's passport page to get her stamp. Thirteen stamps feed the two puzzles on the flap, and those open the inner pocket. Her journal answers most questions in plain sight. When it doesn't, a coin from the purse opens a hint tab.</p>
+      </div>
+    </div>
+    <div class="side-tools">
+      <div class="card">
+        <h4>Emergency coins · 1967</h4>
+        <div class="purse"><div class="coins" id="coins"></div><span class="lbl" id="coinlbl"></span></div>
+      </div>
+      <div class="card">
+        <h4>Passport · thirteen pages</h4>
+        <div class="ppstrip" id="ppstrip"></div>
+        <div class="row" style="margin-top:12px;justify-content:space-between">
+          <span class="lbl" id="pplbl"></span>
+          <button class="btn" id="resetbtn" type="button">Repack the bag</button>
+        </div>
+        <div class="msg" id="resetmsg"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="bag" id="bagnav" aria-label="Pockets"></nav>
+    <main id="stage" tabindex="-1"></main>
+  </div>
+
+  <footer class="key">
+    <details>
+      <summary class="lbl" style="cursor:pointer">Answer key for builders and playtest hosts</summary>
+      <p>This spoils every puzzle. Use it to run a playtest, not to play.</p>
+      <button class="btn" type="button" id="keybtn">Show the answers</button>
+      <div id="keyout"></div>
+    </details>
+    <p style="margin-top:18px">Playtest note: the Nunavut and Northwest Territories content draws on living Inuit and northern cultures. This build is a mechanics prototype; paid consultation comes before anything is printed.</p>
+  </footer>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="codArt">
+      <rect x="0" y="0" width="500" height="200" fill="#2e5a66"/>
+      <g stroke="#7fb2bd" stroke-width="2" fill="none" opacity=".55">
+        <path d="M0 22 Q25 12 50 22 T100 22 T150 22 T200 22 T250 22 T300 22 T350 22 T400 22 T450 22 T500 22"/>
+        <path d="M0 182 Q25 172 50 182 T100 182 T150 182 T200 182 T250 182 T300 182 T350 182 T400 182 T450 182 T500 182"/>
+        <path d="M10 150 q10 -6 20 0 M460 30 q10 -6 20 0 M330 170 q10 -6 20 0 M150 30 q10 -6 20 0"/>
+      </g>
+      <path d="M420 100 L492 40 L478 100 L492 160 Z" fill="#8b7a4b" stroke="#3d3420" stroke-width="3"/>
+      <path d="M230 46 Q260 18 300 44 Z" fill="#8b7a4b" stroke="#3d3420" stroke-width="3"/>
+      <path d="M220 154 Q250 182 286 156 Z" fill="#8b7a4b" stroke="#3d3420" stroke-width="3"/>
+      <ellipse cx="245" cy="100" rx="200" ry="60" fill="#a8975f" stroke="#3d3420" stroke-width="4"/>
+      <path d="M60 112 Q245 160 430 108 Q245 150 60 112Z" fill="#e6dcb8" opacity=".8"/>
+      <path d="M60 100 Q245 92 432 100" stroke="#f0e8cc" stroke-width="3" fill="none" opacity=".9"/>
+      <g fill="#6d5d34" opacity=".75">
+        <circle cx="300" cy="66" r="5"/><circle cx="330" cy="80" r="4"/><circle cx="360" cy="70" r="5"/><circle cx="390" cy="86" r="4"/>
+        <circle cx="280" cy="84" r="4"/><circle cx="345" cy="58" r="3"/><circle cx="400" cy="68" r="3"/>
+      </g>
+      <circle cx="82" cy="88" r="10" fill="#f6f1df" stroke="#3d3420" stroke-width="3"/><circle cx="84" cy="88" r="5" fill="#1c2520"/>
+      <path d="M48 112 Q62 118 76 112" stroke="#3d3420" stroke-width="3" fill="none"/>
+      <path d="M62 120 Q60 140 52 150" stroke="#3d3420" stroke-width="3" fill="none"/>
+      <path d="M40 66 Q80 22 130 58 L150 62 Q90 66 40 74Z" fill="#e7b43a" stroke="#3d3420" stroke-width="3"/>
+      <text x="300" y="62" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#1c2520" letter-spacing="2">REGISTERED COD</text>
+      <text x="112" y="122" font-family="Zilla Slab, Georgia, serif" font-size="30" font-weight="700" fill="#1c2520">№</text>
+      <text x="166" y="128" text-anchor="middle" font-family="Zilla Slab, Georgia, serif" font-size="74" font-weight="700" fill="#1c2520" stroke="#f0e8cc" stroke-width="2">6</text>
+      <text x="236" y="128" text-anchor="middle" font-family="Zilla Slab, Georgia, serif" font-size="74" font-weight="700" fill="#1c2520" stroke="#f0e8cc" stroke-width="2">1</text>
+    </g>
+  </defs>
+</svg>
+<script>
+(function(){
+"use strict";
+
+/* =============================== DATA =============================== */
+var P = [
+ {id:'nl', name:'Newfoundland and Labrador', short:'NL', pocket:'lid', title:'The Dead Letter Office', ans:'61', day:1,  letter:'T', town:'Come By Chance',
+  souv:'<b>Six undeliverable letters</b> she kept from her summer job sorting mail at Come By Chance, with the dictionary and gazetteer she bought to survive it.',
+  j:"The postmistress kept saying the three Hearts are different: wanting, having, and needing nothing at all.",
+  h2:"Every letter names its town without saying it. Read for what happened to the writer, then check the gazetteer's one-line descriptions.",
+  h3:"Gus to Come By Chance, Ida to Blow Me Down, Skipper Len to Heart's Content, Mary to Heart's Delight, Bride to Witless Bay, Nan to Happy Adventure. Then read the cod."},
+ {id:'ns', name:'Nova Scotia', short:'NS', pocket:'lid', title:'The Money Pit', ans:'70', day:10, letter:'H', town:'Oak Island',
+  souv:'<b>Seven core-sample cards</b> and a tourist pamphlet from the Oak Island stand. Each card has a tab on its edge.',
+  j:"The man at the Oak Island stand said the diggers never agreed on depths, only on what came after what.",
+  h2:"Put the cards in the order they were dug, shallowest at the top. Each quote in the pamphlet tells you a layer's neighbour.",
+  h3:"Flagstones, oak platform, charcoal, putty, coconut fibre, inscribed stone, flood. Read the edge tabs top to bottom."},
+ {id:'nb', name:'New Brunswick', short:'NB', pocket:'lid', title:'Magnetic Hill', ans:'10', day:12, letter:'G', town:'Moncton',
+  souv:'<b>A lenticular postcard</b> of Magnetic Hill, a surveyor\'s field notes, and a souvenir compass medallion.',
+  j:"At Magnetic Hill the car rolled up, the compass pointed at the sunset, and the sign said down is up. I believed all three.",
+  h2:"The surveyor took his bearings before the hill turned. Everything here is reversed, so his bearings are too.",
+  h3:"Add 180° to each bearing: 255°, 315° and 135°. Read the three letters in the window, in the order of the notes."},
+ {id:'pei', name:'Prince Edward Island', short:'PE', pocket:'lid', title:'Best of the Island', ans:'52', day:11, letter:'E', town:'Charlottetown',
+  souv:'<b>A vial of pink sand</b> labelled "Best of the Island", a Junior Geology Club test kit, and the Tourist Bureau\'s 1967 beach leaflet.',
+  j:"Came over on the Wood Islands boat and left on the Borden boat. My two favourite beaches went in the vial, in the order I swam them.",
+  h2:"Don't trust the colour from arm's length. Look at the grains under the loupe and the sieve before you look for a pink beach.",
+  h3:"It's red grains and white grains mixed. Basin Head is the only white beach with no shell, and Thunder Cove is the only red one that brings both iron and grit. She came in at Wood Islands in the east."},
+ {id:'qc', name:'Quebec', short:'QC', pocket:'front', title:'La ceinture fléchée', ans:'53', day:13, letter:'A', town:'Quebec City',
+  souv:'<b>A length of arrow sash</b> that was tied around the bag when it was handed over, and a map card of the Carnaval ice palace.',
+  j:"Mémère tied it on from the knot end. She said you always start a sash from the knot.",
+  h2:"Each arrow on the sash is one step through the palace, starting in the Gate Hall. Read from the knot, not the fringe.",
+  h3:"Knot to fringe: up, up, right, right, up, left, up, left. The chamber you end in is the number."},
+ {id:'on', name:'Ontario', short:'ON', pocket:'front', title:'Downstream', ans:'16', day:18, letter:'P', town:'Sault Ste. Marie',
+  souv:'<b>A laker\'s route cards</b> for every channel out of the Great Lakes, from the mate she rode with from the Soo.',
+  j:"The mate said everyone on land thinks in HOMES. Water doesn't spell. Water goes downhill.",
+  h2:"She's 222 metres long and has to call at all five lakes. Small canals and waterfalls are out. Count the locks on the route that works.",
+  h3:"Soo Locks, Mackinac in and back out, St. Clair–Detroit, Welland, then the Seaway. Add up their locks."},
+ {id:'mb', name:'Manitoba', short:'MB', pocket:'left', title:'The Polar Bear Jail', ans:'29', day:19, letter:'S', town:'Churchill',
+  souv:'<b>Three carved bears</b>, a Churchill map card and the holding facility\'s posted release rules.',
+  j:"The warden at Churchill had three bears to move before the ice came in, and a rule for each one.",
+  h2:"Start with the mother: she has to be three squares from town, which leaves only a few spots. The old male needs the shore and has to be east of her.",
+  h3:"Mother and cub go on the south edge, second from the east. The old male goes on the north shore at the far east. His square is the number."},
+ {id:'sk', name:'Saskatchewan', short:'SK', pocket:'left', title:'Living Skies', ans:'74', day:20, letter:'A', town:'Rosetown',
+  souv:'<b>A star card</b> and a frosted kitchen-window film printed with the grain elevators at Rosetown.',
+  j:"Uncle said you only see the real sky from the kitchen window, with the tallest elevator holding up the Pole Star.",
+  h2:"Slide the window film until the tip of the tallest elevator's weathervane sits on the star marked with a cross. The frost covers most of the sky.",
+  h3:"With the vane on the Pole Star, the stars left showing make two digits."},
+ {id:'ab', name:'Alberta', short:'AB', pocket:'left', title:'Rat Patrol', ans:'83', day:21, letter:'R', town:'Medicine Hat',
+  souv:'<b>Ten specimen tags</b>, a Rat Patrol field guide and a card of the border wall with its ten burrows.',
+  j:"Rat Patrol had a rule: if it isn't a rat, it's a citizen. Two rats in the whole lot.",
+  h2:"Check every tag against all three parts of the definition, not just the tail. Then read the burrows in patrol order.",
+  h3:"Specimens B and G are the rats. The patrol walks west to east."},
+ {id:'bc', name:'British Columbia', short:'BC', pocket:'right', title:'The Tide and the Ferry', ans:'26', day:22, letter:'E', town:'Swartz Bay',
+  souv:'<b>A dog-eared ferry schedule</b> and a current table for Active Pass, with the captain\'s rule pencilled on the back.',
+  j:"The captain said the old Princess never fights the Pass. She goes with it, or she waits for slack.",
+  h2:"Check the current when she reaches the Pass, not when she leaves the dock. Add 50 minutes from Tsawwassen, 40 from Swartz Bay.",
+  h3:"Only one sailing meets the Pass under 2 knots with the current running her way. It leaves Swartz Bay in the afternoon."},
+ {id:'yt', name:'Yukon', short:'YT', pocket:'main', title:'Three Above Discovery', ans:'64', day:23, letter:'K', town:'Dawson City',
+  souv:'<b>A Bonanza Creek claim map</b> and a prospector\'s note pinned to it.',
+  j:"On Bonanza, 'above' means up the creek and 'below' means down it. Nothing to do with which way you hold the map.",
+  h2:"The creek flows toward the top of the map, so upstream is down the page. Find Skookum Jim's claim, One Above, first.",
+  h3:"From One Above go three claims down the creek, then one back up. That's One Below Discovery, one claim toward the Klondike River."},
+ {id:'nwt', name:'Northwest Territories', short:'NT', pocket:'main', title:'The Ice Road', ans:'45', day:27, letter:'E', town:'Yellowknife',
+  souv:'<b>A winter-road map</b> with a load limit on every stretch, a cargo manifest and a truck token.',
+  j:"The ice road driver said the trick is the order you drop things off. The ice only cares what you weigh right now.",
+  h2:"You're too heavy for Gordon Lake direct or for Mackay first. Lighten the truck at Lockhart before anything else.",
+  h3:"Tibbitt, Prosperous, Gordon, Lockhart, Mackay, Dome, Ptarmigan. Add the kilometres."},
+ {id:'nu', name:'Nunavut', short:'NU', pocket:'main', title:'Inuksuit', ans:'54', day:28, letter:'Y', town:'Cambridge Bay',
+  souv:'<b>Three photographs</b> of stone figures and a map card. Nunavut became its own territory in 1999; she unpicked the old patch and sewed a new one.',
+  j:"Each figure's long arm points at something you can see from where it stands.",
+  h2:"Match each photograph's landmark to its symbol on the map, then turn that figure so its long arm points right at it. Where all three sightlines cross is the cache.",
+  h3:"A points at the Two Hills, B at Lookout Rock, C at the river mouth. They cross at row 5, column 4."}
+];
+var BYID = {}; P.forEach(function(p){ BYID[p.id]=p; });
+var POCKETS = [
+  {id:'tag', name:'Luggage tag', sub:'start here', items:[{id:'intro',label:'Her note'}]},
+  {id:'lid', name:'Lid pocket', sub:'open', items:['nl','ns','nb','pei']},
+  {id:'front', name:'Front pocket', sub:'opened at the Quebec border', items:['qc','on']},
+  {id:'left', name:'Left side pocket', sub:'the Prairies', items:['sk','ab','mb']},
+  {id:'right', name:'Right side pocket', sub:'the coast', items:['bc']},
+  {id:'main', name:'Main compartment', sub:'the North', items:['yt','nwt','nu']},
+  {id:'flap', name:'The flap', sub:'patches and the inner pocket', items:[{id:'meta1',label:'The itinerary'},{id:'meta2',label:'Where she lingered'}]}
+];
+var META = {
+  meta1:{j:"I never wrote dates in this journal. The passport has every one.",
+         h2:"Put the stamps in day order and read the letters top to bottom.",
+         h3:"Day order spells THE GAPS ARE KEY."},
+  meta2:{j:"I only ever slept more than a night in three places. Count what I stitched there.",
+         h2:"The gaps between day numbers show where she lingered: after Newfoundland, after Quebec and after the Yukon. Count those three patches, in the order she visited.",
+         h3:"Six cod, four fleurs-de-lis, seven spruce."}
+};
+var COINS = ['1¢','5¢','10¢','25¢','50¢','$1','1¢','5¢'];
+
+/* =============================== STATE =============================== */
+var KEY='lwh-backpack-v1';
+var S = {solved:{}, coins:8, hints:{}, view:'intro', order:null, meta1:false, lock:false, sc:false};
+try{ var raw=localStorage.getItem(KEY); if(raw){ var o=JSON.parse(raw); for(var k in o) S[k]=o[k]; } }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+/* =============================== HELPERS =============================== */
+function $(s,r){ return (r||document).querySelector(s); }
+function h(tag, attrs, html){
+  var e=document.createElement(tag);
+  if(attrs) for(var a in attrs){ if(a==='class') e.className=attrs[a]; else e.setAttribute(a,attrs[a]); }
+  if(html!=null) e.innerHTML=html;
+  return e;
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+var SVGNS='http://www.w3.org/2000/svg';
+function sv(tag, attrs, parent){
+  var e=document.createElementNS(SVGNS, tag);
+  for(var a in attrs){
+    var v=attrs[a];
+    if(typeof v==='string' && v.indexOf('var(')===0 && (a==='fill'||a==='stroke')) e.style[a]=v;
+    else if(a==='style') e.style.cssText += ';'+v;
+    else e.setAttribute(a, v);
+  }
+  if(parent) parent.appendChild(e);
+  return e;
+}
+function cssv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+/* stamp: circular cancellation */
+function stampSVG(p, isNew){
+  var rot = -9;
+  var name = p.town.toUpperCase();
+  var id = 'arc-'+p.id+'-'+Math.random().toString(36).slice(2,7);
+  return '<svg viewBox="0 0 100 100" class="'+(isNew?'new':'')+'" style="transform:rotate('+rot+'deg)" role="img" aria-label="Passport stamp, '+esc(p.name)+', day '+p.day+'">'+
+    '<defs><path id="'+id+'" d="M50,50 m-36,0 a36,36 0 1,1 72,0"/></defs>'+
+    '<circle cx="50" cy="50" r="44" fill="none" style="stroke:var(--stamp)" stroke-width="2.4"/>'+
+    '<circle cx="50" cy="50" r="31" fill="none" style="stroke:var(--stamp)" stroke-width="1"/>'+
+    '<text font-size="8" letter-spacing="1.2" style="fill:var(--stamp)" text-anchor="middle"><textPath href="#'+id+'" startOffset="50%">'+esc(name)+'</textPath></text>'+
+    '<text x="50" y="47" text-anchor="middle" font-size="9" style="fill:var(--stamp)" letter-spacing="1">DAY '+p.day+'</text>'+
+    '<text x="50" y="72" text-anchor="middle" font-size="24" font-weight="700" style="fill:var(--stamp)" font-family="Zilla Slab, Georgia, serif">'+p.letter+'</text>'+
+    '<text x="50" y="90" text-anchor="middle" font-size="6.5" style="fill:var(--stamp)" letter-spacing="1.4">EXPO · 1967</text>'+
+  '</svg>';
+}
+
+/* =============================== TOP BAR =============================== */
+function drawCoins(){
+  var c=$('#coins'); c.innerHTML='';
+  for(var i=0;i<8;i++){ var d=h('span',{class:'coin'+(i>=S.coins?' spent':''),'aria-hidden':'true'}, COINS[i]); c.appendChild(d); }
+  $('#coinlbl').textContent = S.coins+' of 8 left';
+}
+function drawStrip(){
+  var s=$('#ppstrip'); s.innerHTML='';
+  var n=0;
+  P.forEach(function(p){
+    var done=!!S.solved[p.id]; if(done) n++;
+    var b=h('button',{class:'ppslot'+(done?' done':''),type:'button',title:p.name+(done?' · day '+p.day:''),'aria-label':p.name+(done?', stamped':', not stamped')}, done?p.letter:p.short);
+    b.addEventListener('click',function(){ go(p.id); });
+    s.appendChild(b);
+  });
+  $('#pplbl').textContent = n+' of 13 stamped';
+}
+function drawNav(){
+  var nav=$('#bagnav'); nav.innerHTML='';
+  POCKETS.forEach(function(pk){
+    var d=h('div',{class:'pocket'});
+    d.appendChild(h('h3',null, esc(pk.name)+'<small>'+esc(pk.sub)+'</small>'));
+    pk.items.forEach(function(it){
+      var id = typeof it==='string'? it : it.id;
+      var label = typeof it==='string'? BYID[it].name : it.label;
+      var st='';
+      if(BYID[id]) st = S.solved[id] ? '<span class="st ok">'+BYID[id].letter+'</span>' : '';
+      if(id==='meta1' && S.meta1) st='<span class="st">done</span>';
+      if(id==='meta2' && S.lock) st='<span class="st">open</span>';
+      var b=h('button',{class:'navbtn',type:'button','aria-current':String(S.view===id)}, '<span>'+esc(label)+'</span>'+st);
+      b.addEventListener('click',function(){ go(id); });
+      d.appendChild(b);
+    });
+    nav.appendChild(d);
+  });
+}
+function refreshChrome(){ drawCoins(); drawStrip(); drawNav(); }
+
+/* =============================== SHARED BELOW-PUZZLE BLOCK =============================== */
+function belowBlock(id, j, h2, h3, withPassport){
+  var wrap=h('div',{class:'below'});
+  var jr=h('div',{class:'journal'});
+  jr.appendChild(h('div',{class:'lbl'},'Her journal'));
+  jr.appendChild(h('p',{class:'entry'}, esc(j)));
+  [['2',h2],['3',h3]].forEach(function(t){
+    var key=id+'-'+t[0];
+    var tab=h('div',{class:'htab'});
+    var line=h('div',{class:'hl'});
+    line.appendChild(h('span',{class:'lbl'}, 'If you\'re stuck · tab '+(t[0]==='2'?'one':'two')));
+    var body=h('p');
+    if(S.hints[key]){ body.textContent=t[1]; }
+    else{
+      var b=h('button',{class:'btn',type:'button'}, 'Spend a coin');
+      if(S.coins<=0){ b.disabled=true; b.textContent='Purse is empty'; }
+      if(t[0]==='3' && !S.hints[id+'-2']){ b.disabled=true; b.textContent='Open tab one first'; }
+      b.addEventListener('click',function(){
+        if(S.coins<=0) return;
+        S.coins--; S.hints[key]=true; save(); drawCoins(); render();
+      });
+      line.appendChild(b);
+    }
+    tab.appendChild(line); tab.appendChild(body);
+    jr.appendChild(tab);
+  });
+  wrap.appendChild(jr);
+  if(withPassport) wrap.appendChild(passportBlock(BYID[id]));
+  return wrap;
+}
+
+function passportBlock(p){
+  var box=h('div',{class:'passport'});
+  box.appendChild(h('div',{class:'lbl'},'Passport · page '+(P.indexOf(p)+1)+' · '+esc(p.name)));
+  box.appendChild(h('p',{style:'margin:6px 0 0;font-size:15px'},'Your answer is a cell on this page\'s 10 × 10 grid. Look it up.'));
+  var f=h('form',{class:'ppin'});
+  var inp=h('input',{id:'pp-'+p.id,inputmode:'numeric',maxlength:'2',pattern:'[0-9]{2}','aria-label':'Two-digit cell number',autocomplete:'off',placeholder:'00'});
+  f.appendChild(inp);
+  f.appendChild(h('button',{class:'btn primary',type:'submit'},'Look up the cell'));
+  box.appendChild(f);
+  var res=h('div',{class:'stampbox','aria-live':'polite'});
+  box.appendChild(res);
+  function show(isNew){
+    res.innerHTML = stampSVG(p,isNew)+'<div><div class="lbl">Cell '+p.ans+'</div><div style="font-family:var(--f-display);font-weight:600;font-size:19px">Stamped: day '+p.day+'</div><div style="font-size:14.5px;color:var(--muted)">Letter '+p.letter+' goes on the itinerary.</div></div>';
+  }
+  if(S.solved[p.id]){ show(false); inp.value=p.ans; }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=(inp.value||'').replace(/\D/g,'');
+    if(v.length===1) v='0'+v;
+    if(v.length!==2){ res.innerHTML='<p class="msg bad">Enter two digits. Every souvenir in the bag resolves to a number from 00 to 99.</p>'; return; }
+    if(v===p.ans){
+      var first=!S.solved[p.id];
+      S.solved[p.id]=true; save(); refreshChrome(); show(first);
+    } else {
+      res.innerHTML='<p class="msg bad">Cell '+v+' is blank on the '+esc(p.name)+' page. Nothing stamped.</p>';
+    }
+  });
+  return box;
+}
+
+function header(p, extra){
+  var ph=h('div',{class:'ph'});
+  var left=h('div');
+  left.appendChild(h('div',{class:'where'}, esc(extra||p.name)));
+  left.appendChild(h('h2',null, esc(p.title||'')));
+  ph.appendChild(left);
+  return ph;
+}
+
+/* =============================== ROUTER =============================== */
+var PUZ = {}; /* filled by puzzle modules */
+function go(id){
+  S.view=id; save(); render();
+  var st=$('#stage'); if(st){ st.focus({preventScroll:true}); if(window.innerWidth<820) st.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+function render(){
+  drawNav();
+  var st=$('#stage'); st.innerHTML='';
+  var id=S.view;
+  if(id==='intro'){ renderIntro(st); return; }
+  if(id==='meta1'){ PUZ.meta1(st); return; }
+  if(id==='meta2'){ PUZ.meta2(st); return; }
+  var p=BYID[id]; if(!p){ S.view='intro'; renderIntro(st); return; }
+  st.appendChild(header(p, p.name+' · '+POCKETS.filter(function(x){return x.id===p.pocket;})[0].name));
+  st.appendChild(h('p',{class:'souv'}, p.souv));
+  var area=h('div'); st.appendChild(area);
+  try{ PUZ[id](area, p); }catch(err){ area.appendChild(h('p',{class:'msg bad'},'This souvenir failed to load: '+esc(err.message))); console.error(err); }
+  st.appendChild(belowBlock(p.id, p.j, p.h2, p.h3, true));
+}
+function renderIntro(st){
+  var ph=h('div',{class:'ph'}); var l=h('div');
+  l.appendChild(h('div',{class:'where'},'The handover'));
+  l.appendChild(h('h2',null,'"Get further than I did."'));
+  ph.appendChild(l); st.appendChild(ph);
+  var g=h('div',{class:'grid2',style:'margin-top:18px'});
+  var letter=h('div',{class:'letter'},
+   '<p style="margin:0 0 10px">This bag went coast to coast to coast in the summer of 1967, the Centennial. Every pocket has something from somewhere. Some of it I can\'t explain anymore. Some of it I never could.</p>'+
+   '<p style="margin:0 0 10px">My passport is in the lid with my journal. I stamped it at every stop, like we did at Expo. I left you some coins in the purse for emergencies. Don\'t waste them on the easy ones.</p>'+
+   '<p style="margin:0">The inside pocket I locked the last night. I don\'t remember what I wrote. You\'ll have to find the combination the same way I made it: by going.</p>');
+  g.appendChild(letter);
+  var c=h('div',{class:'card stack'});
+  c.appendChild(h('h4',null,'What\'s in the bag'));
+  c.appendChild(h('ul',{style:'margin:0;padding-left:18px'},
+    '<li>Thirteen souvenirs across five pockets, one per province and territory.</li>'+
+    '<li>Each resolves to a two-digit number. The passport page for that place stamps it with a <b>day</b> and a <b>letter</b>.</li>'+
+    '<li>Thirteen stamps feed the itinerary on the flap. The itinerary leads to the patches. The patches open the inner pocket.</li>'+
+    '<li>Her journal is the hint system. The first line under every souvenir is free. The tabs cost a coin each, and there are eight coins.</li>'+
+    '<li>Pockets can be solved in any order and split across a table.</li>'));
+  var b=h('button',{class:'btn primary',type:'button',style:'justify-self:start'},'Open the lid pocket');
+  b.addEventListener('click',function(){ go('nl'); });
+  c.appendChild(b);
+  g.appendChild(c);
+  st.appendChild(g);
+}
+
+/* reset */
+var resetArmed=false;
+document.addEventListener('DOMContentLoaded',function(){});
+function wireReset(){
+  $('#resetbtn').addEventListener('click',function(){
+    if(!resetArmed){ resetArmed=true; $('#resetmsg').className='msg bad'; $('#resetmsg').textContent='This clears every stamp, coin and hint. Click again to repack.'; this.textContent='Yes, repack it'; return; }
+    S={solved:{}, coins:8, hints:{}, view:'intro', order:null, meta1:false, lock:false, sc:false}; save();
+    resetArmed=false; this.textContent='Repack the bag'; $('#resetmsg').textContent='';
+    refreshChrome(); render();
+  });
+}
+function wireKey(){
+  var armed=false;
+  $('#keybtn').addEventListener('click',function(){
+    if(!armed){ armed=true; this.textContent='Click again to show every answer'; return; }
+    var rows=P.slice().sort(function(a,b){return a.day-b.day;}).map(function(p){
+      return '<tr><td>'+esc(p.name)+'</td><td class="mono">'+p.ans+'</td><td>'+p.day+'</td><td>'+p.letter+'</td></tr>';
+    }).join('');
+    $('#keyout').innerHTML='<div class="scroll-x"><table class="keytable"><thead><tr><th>Place</th><th>Cell</th><th>Day</th><th>Letter</th></tr></thead><tbody>'+rows+
+      '</tbody></table></div><p>Itinerary: THE GAPS ARE KEY. Lingered after day 1 (9 nights), day 13 (5 nights), day 23 (4 nights). Patches: NL 6 cod, QC 4 fleurs-de-lis, YT 7 spruce. Lock: <b class="mono">647</b>. Screech-In answer: "Indeed I is, me ol\' cock, and long may yer big jib draw."</p>';
+    this.hidden=true;
+  });
+}
+
+/* expose for module scripts */
+window.LWH = {P:P, BYID:BYID, S:S, META:META, save:save, h:h, sv:sv, esc:esc, $:$, PUZ:PUZ, go:go, render:render,
+  refreshChrome:refreshChrome, belowBlock:belowBlock, stampSVG:stampSVG, cssv:cssv,
+  boot:function(){ refreshChrome(); wireReset(); wireKey(); render(); },
+  getS:function(){ return S; }};
+})();
+</script><script>
+(function(){
+"use strict";
+var L=window.LWH, h=L.h, sv=L.sv, esc=L.esc, PUZ=L.PUZ;
+function S(){ return L.getS(); }
+
+/* generic sortable list with move buttons */
+function sortable(items, order, renderItem, onChange){
+  var ul=h('ol',{class:'sort'});
+  function draw(){
+    ul.innerHTML='';
+    order.forEach(function(id,i){
+      var it=items[id];
+      var li=h('li');
+      var mv=h('div',{class:'mv'});
+      var up=h('button',{type:'button','aria-label':'Move up'},'▲'); up.disabled=(i===0);
+      var dn=h('button',{type:'button','aria-label':'Move down'},'▼'); dn.disabled=(i===order.length-1);
+      up.addEventListener('click',function(){ var t=order[i-1]; order[i-1]=order[i]; order[i]=t; onChange(order); draw(); focusBtn(i-1,'up'); });
+      dn.addEventListener('click',function(){ var t=order[i+1]; order[i+1]=order[i]; order[i]=t; onChange(order); draw(); focusBtn(i+1,'dn'); });
+      mv.appendChild(up); mv.appendChild(dn);
+      li.appendChild(mv);
+      var body=h('div',{style:'min-width:0'}); body.innerHTML=renderItem(it); li.appendChild(body);
+      li.appendChild(h('div',{class:'edge','aria-label':'Edge tab'}, esc(it.edge||'')));
+      ul.appendChild(li);
+    });
+  }
+  function focusBtn(i,which){
+    var li=ul.children[i]; if(!li) return;
+    var b=li.querySelectorAll('.mv button')[which==='up'?0:1];
+    if(b && !b.disabled) b.focus(); else { var o=li.querySelectorAll('.mv button')[which==='up'?1:0]; if(o) o.focus(); }
+  }
+  draw();
+  return ul;
+}
+
+/* ===================== NEWFOUNDLAND ===================== */
+var TOWNS=["Heart's Content","Dildo","Blow Me Down","Witless Bay","Heart's Desire","Goobies","Come By Chance","Happy Adventure","Leading Tickles","Heart's Delight"];
+var DECOY={1:1,4:1,5:1,8:1};
+var LETTERS=[
+ {id:'gus',who:'Gus',home:6,text:"Whadda y'at, me ol' trout? You'll never guess. I were out lookin' for me lost punt (never found she) but I'm after stumblin' on the finest berry patch on the whole shore. Wasn't lookin' for nothin' of the sort, just come upon it. Pure luck, b'y. Yaffle of bakeapples comin' your way.<br>— Gus"},
+ {id:'ida',who:'Ida',home:2,text:"Mudder, it were blowin' a gale o' wind here yesterday. Took Cyril's hat clean off his head and halfway to Ireland, and the shed roof after it. I says to Cyril, luh at 'er go! Some weather we're havin'. Send nails.<br>— Ida"},
+ {id:'len',who:'Skipper Len',home:0,text:"After forty year on the water I'm hauled up for good. Got me vamps on, feet by the stove, fine scoff in me belly. Best kind, b'y. I wants for nothin' at all in this world.<br>— Skipper Len"},
+ {id:'mary',who:'Mary',home:9,text:"You'll be rotted you missed it! Tom went down on one knee right on the wharf, duckish, sun just gone behind the point. I said yes b'y, of course I did. Happiest maid on the whole shore. Weddin' in the fall. Don't be no gommel, come home for it.<br>— Mary"},
+ {id:'bride',who:'Bride',home:3,text:"That cousin of yours, God love him, is stunned as me arse. Went out in mauzy weather, no coat, no compass, and crooked as sin when we hauled him back in over the gunwale. Don't you be no gommel like he, now.<br>— Bride"},
+ {id:'nan',who:'Nan',home:7,text:"Finest kind of trip ever we had! We seen whales off the point, ate bangbelly on the beach, and had a scoff and a scuff after supper besides. The youngsters says it were the grandest adventure of their lives. We'll go again, sure.<br>— Nan"}
+];
+var DICT=[["after (doing)","Just done. \"I'm after losin' me keys\" means I just lost them."],["bakeapple","Cloudberry."],["best kind","Excellent; couldn't be better."],["b'y","Boy; said to anyone, of any age."],
+ ["crooked as sin","Grumpy, cross. Not dishonest."],["duckish","Twilight, between sunset and dark."],["finest kind","The very best."],["gale o' wind","A strong wind."],["gommel","A foolish, awkward person."],
+ ["hauled up","Retired; a boat pulled up on shore for good."],["luh","Look!"],["maid","A girl or young woman."],["mauzy","Damp, foggy, misty."],["me ol' trout","My old friend."],
+ ["mudder","Mother."],["punt","A small open boat."],["rotted","Very annoyed."],["scoff","A big meal. \"A scoff and a scuff\" is dinner and a dance."],
+ ["stunned as me arse","Very foolish."],["vamps","Thick wool socks worn as slippers."],["whadda y'at?","How are you getting on? Reply: \"This is it.\""],["yaffle","An armful."],
+ ["The Screech-In","When asked \"Is ye a Newfoundlander?\" the reply is \"Indeed I is, me ol' cock, and long may yer big jib draw.\""]];
+var GAZ=[["Heart's Content","Named for the peace at the end of wanting."],["Heart's Desire","Named for that which is longed for and not yet held."],["Heart's Delight","Named for joy attained."],
+ ["Come By Chance","So named for its accidental discovery."],["Blow Me Down","After the gusts off the headland."],["Witless Bay","Origin disputed. Locals have opinions."],
+ ["Happy Adventure","Named by a settler after a fine voyage."],["Dildo","Yes, really."],["Goobies","Gateway to the Burin."],["Leading Tickles","A tickle is a narrow saltwater strait."]];
+
+PUZ.nl=function(area){
+  var st=S(); st.nl=st.nl||{placed:{}}; var placed=st.nl.placed; var sel=null;
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var left=h('div',{class:'stack'}), right=h('div',{class:'stack'});
+  g.appendChild(left); g.appendChild(right);
+
+  var rc=h('div',{class:'card'}); rc.appendChild(h('h4',null,'The sorting rack · envelopes post flap-out'));
+  var rack=h('div',{class:'rack'}); rc.appendChild(rack);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); rc.appendChild(msg);
+  left.appendChild(rc);
+
+  var tc=h('div',{class:'card'}); tc.appendChild(h('h4',null,'The mail sack · pick an envelope, then a pigeonhole'));
+  var tray=h('div',{class:'tray'}); tc.appendChild(tray);
+  var reader=h('div',{style:'margin-top:12px'}); tc.appendChild(reader);
+  left.appendChild(tc);
+
+  var ref=h('div',{class:'card'});
+  ref.appendChild(h('h4',null,'Bought at the Come By Chance post office'));
+  var d1=h('details',{class:'ref'}); d1.appendChild(h('summary',null,'Dictionary of Newfoundland English'));
+  d1.appendChild(h('dl',null, DICT.map(function(x){return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>';}).join('')));
+  var d2=h('details',{class:'ref'}); d2.appendChild(h('summary',null,'Gazetteer of Notable Communities'));
+  d2.appendChild(h('dl',null, GAZ.map(function(x){return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>';}).join('')));
+  ref.appendChild(d1); ref.appendChild(d2);
+  ref.appendChild(h('p',{style:'font-size:14.5px;color:var(--muted);margin:10px 0 0'},'The envelope backs are printed with pieces of one picture. Unused holes hold the postmistress\'s Return to Sender cards.'));
+  right.appendChild(ref);
+
+  function where(lid){ for(var k in placed) if(placed[k]===lid) return +k; return -1; }
+  function crop(i){ var c=i%5, r=Math.floor(i/5); return '<svg viewBox="'+(c*100)+' '+(r*100)+' 100 100" aria-hidden="true"><use href="#codArt"/></svg>'; }
+  function drawRack(){
+    rack.innerHTML='';
+    for(var i=0;i<10;i++){(function(i){
+      var lid=placed[i]; var L1=lid?LETTERS.filter(function(x){return x.id===lid;})[0]:null;
+      var b=h('button',{class:'hole',type:'button','aria-label':TOWNS[i]+(L1?', holds the letter from '+L1.who:(DECOY[i]?', return to sender card':', empty'))});
+      var win=h('div',{class:'win'});
+      if(L1){ win.innerHTML=crop(L1.home)+'<span class="who">'+esc(L1.who.split(' ').pop())+'</span>'; }
+      else if(DECOY[i]){ win.innerHTML=crop(i)+'<span class="rts">RETURN TO SENDER</span>'; }
+      else win.innerHTML='<span class="empty">EMPTY</span>';
+      b.appendChild(win);
+      b.appendChild(h('div',{class:'plate'},esc(TOWNS[i])));
+      b.addEventListener('click',function(){
+        if(sel){
+          var from=where(sel); if(from>=0) delete placed[from];
+          placed[i]=sel; sel=null;
+        } else if(placed[i]){ sel=placed[i]; delete placed[i]; }
+        L.save(); drawAll();
+      });
+      rack.appendChild(b);
+    })(i);}
+    var ok=LETTERS.every(function(x){ return placed[x.home]===x.id; });
+    var n=Object.keys(placed).length;
+    msg.className='msg'+(ok?' good':'');
+    msg.textContent= ok ? 'The cod is whole. Read its registration number.' : (n===6 ? 'All six are filed, but the picture doesn\'t sit right. Something is in the wrong hole.' : n+' of 6 letters filed.');
+  }
+  function drawTray(){
+    tray.innerHTML='';
+    LETTERS.forEach(function(x){
+      var filed=where(x.id)>=0;
+      var b=h('button',{class:'env'+(filed?' filed':''),type:'button','aria-pressed':String(sel===x.id)}, esc(x.who));
+      b.addEventListener('click',function(){ sel=(sel===x.id)?null:x.id; drawAll(); });
+      tray.appendChild(b);
+    });
+    var cur=sel?LETTERS.filter(function(x){return x.id===sel;})[0]:null;
+    reader.innerHTML = cur ? '<div class="letter">'+cur.text+'</div><p class="lbl" style="margin-top:8px">Now click the pigeonhole it belongs in.</p>' : '<p style="margin:0;color:var(--muted);font-size:15px">Pick an envelope to read it. Click a filed letter in the rack to take it back out.</p>';
+  }
+  function drawAll(){ drawRack(); drawTray(); }
+  drawAll();
+};
+
+/* ===================== NOVA SCOTIA ===================== */
+var CORES={flag:{name:'Flagstones',d:'Flat stones, laid deliberately.',edge:'S',c:'#9b9a92'},oak:{name:'Oak platform',d:'Squared logs, notched and pinned.',edge:'E',c:'#8a6a3e'},
+  char:{name:'Charcoal',d:'A black seam, finger-thick.',edge:'V',c:'#2c2c2c'},putty:{name:'Ship\'s putty',d:'Grey, oily, still soft.',edge:'E',c:'#b7b29b'},
+  fibre:{name:'Coconut fibre',d:'Brown matting. No coconuts grow within a thousand miles.',edge:'N',c:'#a77a4a'},stone:{name:'Inscribed stone',d:'Flat, with symbols nobody could read.',edge:'T',c:'#59646a'},
+  flood:{name:'Flood tunnel',d:'Salt water, rising fast.',edge:'Y',c:'#2f5c6e'}};
+PUZ.ns=function(area){
+  var st=S(); st.ns=st.ns||{order:['putty','flood','flag','stone','char','oak','fibre']};
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var a=h('div',{class:'card'}); a.appendChild(h('h4',null,'Core samples · shallowest at the top'));
+  var msg=h('div',{class:'msg'});
+  a.appendChild(sortable(CORES, st.ns.order, function(it){
+    return '<div style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:34px;border-radius:2px;flex:0 0 auto;background:'+it.c+'"></span><div><div style="font-family:var(--f-display);font-weight:600">'+esc(it.name)+'</div><div style="font-size:14px;color:var(--muted)">'+esc(it.d)+'</div></div></div>';
+  }, function(o){ st.ns.order=o; L.save(); }));
+  a.appendChild(h('p',{style:'font-size:14px;color:var(--muted);margin:10px 0 0'},'Read the edge tabs from top to bottom once the order is right.'));
+  g.appendChild(a);
+  var b=h('div',{class:'card'}); b.appendChild(h('h4',null,'Oak Island · visitors\' pamphlet, 1967'));
+  b.appendChild(h('div',{style:'font-size:15.5px'},
+   '<p style="margin-top:0"><b>The Money Pit.</b> Since 1795, men have dug for whatever lies at the bottom of this shaft. The diggers\' own words:</p>'+
+   '<p>"Two feet down we struck flagstones. No farmer lays a floor in a field."</p>'+
+   '<p>"Beneath the first oak platform the clay gave way, and below that came charcoal."</p>'+
+   '<p>"The putty lay directly under the charcoal. The glaziers among us swore to it."</p>'+
+   '<p>"Coconut fibre, of all things, sat between the putty and the stone with the marks on it."</p>'+
+   '<p style="margin-bottom:0">"We lifted the stone and the sea came in. The flood was the last thing anyone found."</p>'));
+  g.appendChild(b);
+};
+
+/* ===================== NEW BRUNSWICK ===================== */
+var RING=["K","W","R","A","X","O","B","L","S","N","U","H","Z","I","M","Q","D","T","F","P","G","E","Y","C"];
+PUZ.nb=function(area){
+  var st=S(); st.nb=st.nb||{b:0,log:[]};
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var left=h('div',{class:'stack'}), right=h('div',{class:'stack'}); g.appendChild(left); g.appendChild(right);
+
+  /* postcard */
+  var pc=h('div',{class:'card'}); pc.appendChild(h('h4',null,'Lenticular postcard · tilt it'));
+  var svg=sv('svg',{viewBox:'0 0 320 190',class:'svgbox',role:'img','aria-label':'Postcard of Magnetic Hill. Tilting it makes the car roll uphill.'});
+  sv('rect',{x:0,y:0,width:320,height:190,fill:'#cfe3e8'},svg);
+  sv('path',{d:'M0 150 L320 70 L320 190 L0 190Z',fill:'#6f8f4e'},svg);
+  sv('path',{d:'M0 168 L320 88 L320 104 L0 184Z',fill:'#4b4b4b'},svg);
+  sv('path',{d:'M0 176 L320 96',stroke:'#e9d27a','stroke-width':2,'stroke-dasharray':'10 8',fill:'none'},svg);
+  sv('text',{x:14,y:28,'font-size':15,'font-weight':600,fill:'#1c2520'},svg).textContent='MAGNETIC HILL · MONCTON N.B.';
+  sv('text',{x:14,y:46,'font-size':10,fill:'#1c2520'},svg).textContent='Shift to neutral. Down is up!';
+  var car=sv('g',{},svg);
+  sv('rect',{x:-16,y:-12,width:32,height:12,rx:3,fill:'#b31f2d'},car);
+  sv('rect',{x:-9,y:-20,width:18,height:9,rx:2,fill:'#d84a52'},car);
+  sv('circle',{cx:-9,cy:1,r:4,fill:'#1c1c1c'},car); sv('circle',{cx:9,cy:1,r:4,fill:'#1c1c1c'},car);
+  pc.appendChild(svg);
+  var tilt=h('input',{type:'range',min:'0',max:'100',value:'0',id:'nb-tilt','aria-label':'Tilt the postcard',style:'width:100%'});
+  pc.appendChild(tilt);
+  function placeCar(v){ var t=v/100; var x=40+t*240, y=176-(x/320)*80-4; car.setAttribute('transform','translate('+x+' '+y+') rotate(-14)'); }
+  placeCar(0); tilt.addEventListener('input',function(){ placeCar(+tilt.value); });
+  left.appendChild(pc);
+
+  /* notes + medallion */
+  var notes=h('div',{class:'card'});
+  notes.appendChild(h('h4',null,'Dominion Land Survey · field notes, 1872'));
+  notes.appendChild(h('div',{class:'note'},'Bearings taken before the disturbance:<br>1. Hopewell Rock · 075°<br>2. Cape Enrage Light · 135°<br>3. Hartland Bridge · 315°'));
+  notes.appendChild(h('p',{class:'note',style:'margin:10px 0 0;font-size:19px'},'Final entry: The needle has turned traitor. North is not north here. I am going home.'));
+  left.appendChild(notes);
+
+  var md=h('div',{class:'card'}); md.appendChild(h('h4',null,'Souvenir compass medallion'));
+  var ms=sv('svg',{viewBox:'0 0 140 140',width:'140',height:'140',role:'img','aria-label':'Compass rose with N printed at the bottom and S at the top'});
+  sv('circle',{cx:70,cy:70,r:62,fill:'#c9a35a',stroke:'#6e5420','stroke-width':3},ms);
+  sv('circle',{cx:70,cy:70,r:50,fill:'#efe3c2',stroke:'#6e5420','stroke-width':1.5},ms);
+  sv('path',{d:'M70 26 L78 70 L70 114 L62 70Z',fill:'#6e5420'},ms);
+  sv('path',{d:'M26 70 L70 62 L114 70 L70 78Z',fill:'#a8844a'},ms);
+  [['S',70,34],['N',70,116],['W',112,74],['E',28,74]].forEach(function(t){ var tx=sv('text',{x:t[1],y:t[2],'text-anchor':'middle','font-size':13,'font-weight':600,fill:'#2b2414'},ms); tx.textContent=t[0]; });
+  md.appendChild(ms);
+  md.appendChild(h('p',{style:'font-size:14px;color:var(--muted);margin:6px 0 0'},'"At Magnetic Hill, DOWN IS UP and UP IS DOWN!" — 1950s Tourist Bureau plaque'));
+  right.appendChild(md);
+
+  /* transit */
+  var tc=h('div',{class:'card'}); tc.appendChild(h('h4',null,'The survey transit · bearing ring'));
+  var ts=sv('svg',{viewBox:'0 0 240 240',class:'svgbox',style:'max-width:280px;margin:0 auto',role:'img','aria-label':'Bearing ring with a reading window at the top'});
+  sv('circle',{cx:120,cy:120,r:110,fill:'#2b2a20'},ts);
+  var ring=sv('g',{},ts);
+  sv('circle',{cx:120,cy:120,r:100,fill:'#c9a35a',stroke:'#6e5420','stroke-width':2},ring);
+  for(var k=0;k<24;k++){
+    var ang=k*15*Math.PI/180;
+    var x=120+Math.sin(ang)*82, y=120-Math.cos(ang)*82;
+    var tt=sv('text',{x:x,y:y+5,'text-anchor':'middle','font-size':15,'font-weight':600,fill:'#2b2414',transform:'rotate('+(k*15)+' '+x+' '+y+')'},ring); tt.textContent=RING[k];
+    var x2=120+Math.sin(ang)*98, y2=120-Math.cos(ang)*98, x3=120+Math.sin(ang)*92, y3=120-Math.cos(ang)*92;
+    sv('line',{x1:x2,y1:y2,x2:x3,y2:y3,stroke:'#2b2414','stroke-width':1.5},ring);
+    if(k%6===0){ var nt=sv('text',{x:120+Math.sin(ang)*62,y:120-Math.cos(ang)*62+4,'text-anchor':'middle','font-size':9,fill:'#6e5420',transform:'rotate('+(k*15)+' '+(120+Math.sin(ang)*62)+' '+(120-Math.cos(ang)*62)+')'},ring); nt.textContent=String(k*15).padStart(3,'0'); }
+  }
+  sv('circle',{cx:120,cy:120,r:40,fill:'#3a382b'},ts);
+  sv('rect',{x:104,y:22,width:32,height:30,rx:4,fill:'none',stroke:'#f0e8cc','stroke-width':3},ts);
+  sv('path',{d:'M120 6 L113 16 L127 16Z',fill:'#f0e8cc'},ts);
+  var bt=sv('text',{x:120,y:126,'text-anchor':'middle','font-size':16,fill:'#f0e8cc','font-weight':600},ts);
+  tc.appendChild(ts);
+  var row=h('div',{class:'row',style:'justify-content:center;margin-top:8px'});
+  [-45,-15,15,45].forEach(function(d){ var b=h('button',{class:'btn',type:'button'},(d>0?'+':'−')+Math.abs(d)+'°'); b.addEventListener('click',function(){ st.nb.b=((st.nb.b+d)%360+360)%360; L.save(); drawT(); }); row.appendChild(b); });
+  tc.appendChild(row);
+  var logrow=h('div',{class:'row',style:'justify-content:center;margin-top:10px'});
+  var logb=h('button',{class:'btn primary',type:'button'},'Write the reading in the book');
+  var clr=h('button',{class:'btn',type:'button'},'New page');
+  var logv=h('div',{class:'mono',style:'font-size:20px;letter-spacing:.3em;text-align:center;margin-top:8px;min-height:1.4em','aria-live':'polite'});
+  logb.addEventListener('click',function(){ st.nb.log.push(RING[st.nb.b/15]); if(st.nb.log.length>6) st.nb.log.shift(); L.save(); drawT(); });
+  clr.addEventListener('click',function(){ st.nb.log=[]; L.save(); drawT(); });
+  logrow.appendChild(logb); logrow.appendChild(clr); tc.appendChild(logrow); tc.appendChild(logv);
+  function drawT(){ ring.setAttribute('transform','rotate('+(-st.nb.b)+' 120 120)'); bt.textContent=String(st.nb.b).padStart(3,'0')+'°'; logv.textContent=st.nb.log.join(' ')||'·'; }
+  drawT();
+  right.appendChild(tc);
+  right.appendChild(h('p',{style:'font-size:14.5px;color:var(--muted);margin:0'},'The surveyor\'s three readings, in order, name the benchmark. Write the benchmark as two digits.'));
+};
+
+/* ===================== PEI ===================== */
+var BEACHES=[
+ {n:1,name:'Cavendish',x:205,y:46,d:'Rosy pink sand along the national park dunes. Fine and soft, and full of tiny crushed shell.'},
+ {n:2,name:'Thunder Cove',x:148,y:52,d:'Deep red sandstone grit, coarse underfoot, dusted with black iron sand where the waves sort it.'},
+ {n:3,name:'Brackley',x:252,y:44,d:'Rosy pink and fine, with streaks of black iron sand at the tide line. Not a shell to be found.'},
+ {n:4,name:'Victoria',x:205,y:138,d:'Red and fine, muddy at low tide. The clam flats are paved with broken shell.'},
+ {n:5,name:'Basin Head',x:428,y:74,d:'The singing sands. Pure white quartz, fine as sugar, squeaks when you walk on it. No shell, no iron.'},
+ {n:6,name:'Panmure Island',x:392,y:128,d:'White sand below the lighthouse, coarse and gritty, mixed with crushed shell.'},
+ {n:7,name:'Point Prim',x:300,y:146,d:'Red and fine below the round brick lighthouse, with black iron sand in the ripples. No shell.'},
+ {n:8,name:'Greenwich',x:336,y:36,d:'White, fine, wind-built dunes. Black iron sand and shell fragments both wash up here.'},
+ {n:9,name:'Cedar Dunes',x:30,y:126,d:'Red and coarse at West Point. No iron to speak of, and no shell.'}
+];
+function rng(seed){ return function(){ seed=(seed*1664525+1013904223)%4294967296; return seed/4294967296; }; }
+PUZ.pei=function(area){
+  var st=S(); st.pei=st.pei||{view:null};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var left=h('div',{class:'stack'}), right=h('div',{class:'stack'}); g.appendChild(left); g.appendChild(right);
+
+  /* bench */
+  var bench=h('div',{class:'card'}); bench.appendChild(h('h4',null,'The vial · and the test kit'));
+  var top=h('div',{style:'display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap'});
+  var VW=110,VH=190;
+  var vial=h('canvas',{width:VW,height:VH,style:'width:110px;height:190px;flex:0 0 auto',role:'img','aria-label':'Glass vial of pink-looking sand labelled Best of the Island'});
+  top.appendChild(vial);
+  var tools=h('div',{style:'display:grid;gap:8px;flex:1 1 180px;min-width:0'});
+  var bL=h('button',{class:'btn',type:'button'},'Look through the loupe');
+  var bM=h('button',{class:'btn',type:'button'},'Hold the magnet over it');
+  var bS=h('button',{class:'btn',type:'button'},'Shake it through the sieve');
+  var bR=h('button',{class:'btn',type:'button'},'Pour it all back and shake');
+  [bL,bM,bS,bR].forEach(function(b){ tools.appendChild(b); });
+  top.appendChild(tools);
+  bench.appendChild(top);
+  var RW=300,RH=180;
+  var res=h('canvas',{width:RW,height:RH,style:'width:100%;max-width:420px;height:auto;display:block;margin-top:14px;border-radius:6px',role:'img','aria-label':'Test result'});
+  var cap=h('p',{style:'margin:8px 0 0;font-size:15px;min-height:2.8em','aria-live':'polite'});
+  bench.appendChild(res); bench.appendChild(cap);
+  left.appendChild(bench);
+
+  var kit=h('div',{class:'card'}); kit.appendChild(h('h4',null,'Junior Geology Club · how to read sand'));
+  kit.appendChild(h('ul',{style:'margin:0;padding-left:18px;font-size:15px'},
+    '<li><b>Magnet:</b> black grains that jump to it are iron sand (magnetite). Nothing else on the Island will move.</li>'+
+    '<li><b>Sieve:</b> coarse grit stays in the mesh. Fine sand runs through to the pan.</li>'+
+    '<li><b>Loupe:</b> shell shows as flat, curved chips with fine ridges, cream or blue-grey. Quartz is round and glassy. Sandstone grains are rust red and angular.</li>'+
+    '<li>Mix two sands and you get both of their grains, and every test that either one passes.</li>'));
+  left.appendChild(kit);
+
+  /* leaflet */
+  var lf=h('div',{class:'card'}); lf.appendChild(h('h4',null,'Island Beaches · P.E.I. Travel Bureau, 1967'));
+  var ms=sv('svg',{viewBox:'0 0 460 190',class:'svgbox',role:'img','aria-label':'Map of Prince Edward Island with nine numbered beaches and two ferry terminals'});
+  sv('rect',{x:0,y:0,width:460,height:190,fill:'#cfe2ea',rx:6},ms);
+  sv('path',{d:'M22 128 C34 108 80 100 112 80 C140 62 172 56 210 54 C258 50 300 46 340 46 C382 48 410 58 430 74 C424 92 404 100 398 112 C392 126 372 134 352 142 C322 150 300 144 284 138 C258 130 230 132 208 130 C184 134 164 136 138 132 C108 128 82 136 56 138 C40 140 24 138 22 128Z',fill:'#c9824f',stroke:'#7a4024','stroke-width':2},ms);
+  sv('circle',{cx:266,cy:112,r:4,fill:'#1c2520'},ms);
+  var ct=sv('text',{x:272,y:116,'font-size':9,fill:'#1c2520'},ms); ct.textContent='Charlottetown';
+  [['Borden ferry · to N.B.',162,140,150,172],['Wood Islands ferry · from N.S.',338,144,282,176]].forEach(function(f){
+    sv('path',{d:'M'+f[1]+' '+f[2]+' L'+(f[1]-5)+' '+(f[2]+12)+' L'+(f[1]+5)+' '+(f[2]+12)+'Z',fill:'#1c2520'},ms);
+    var t=sv('text',{x:f[3],y:f[4],'font-size':9,fill:'#1c2520'},ms); t.textContent=f[0];
+  });
+  BEACHES.forEach(function(b){
+    sv('circle',{cx:b.x,cy:b.y,r:9,fill:'#f4efe2',stroke:'#1c2520','stroke-width':1.5},ms);
+    var t=sv('text',{x:b.x,y:b.y+3.5,'text-anchor':'middle','font-size':10,'font-weight':600,fill:'#1c2520'},ms); t.textContent=b.n;
+  });
+  var cmp=sv('g',{transform:'translate(28 30)'},ms);
+  sv('path',{d:'M0 -12 L4 0 L0 -3 L-4 0Z',fill:'#1c2520'},cmp);
+  var nn=sv('text',{x:0,y:12,'text-anchor':'middle','font-size':9,fill:'#1c2520'},cmp); nn.textContent='N';
+  lf.appendChild(ms);
+  lf.appendChild(h('dl',{style:'margin:10px 0 0;font-size:14.5px;display:grid;gap:6px'},
+    BEACHES.map(function(b){ return '<div><dt style="display:inline;font-weight:600">'+b.n+' · '+esc(b.name)+'.</dt> <dd style="display:inline;margin:0;color:var(--muted)">'+esc(b.d)+'</dd></div>'; }).join('')));
+  right.appendChild(lf);
+
+  /* sand rendering: red coarse sandstone + black iron sand + white quartz, mixed */
+  var R=rng(902);
+  function grain(type){
+    if(type==='red') return ['#b4492a','#a33f22','#c4582f','#9a3a1f'][Math.floor(R()*4)];
+    if(type==='white') return ['#f3efe4','#ebe5d6','#faf7ef'][Math.floor(R()*3)];
+    return '#1b1b1b';
+  }
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  function setup(cv,W,H){ cv.width=W*dpr; cv.height=H*dpr; var c=cv.getContext('2d'); c.setTransform(dpr,0,0,dpr,0,0); return c; }
+  var vc=setup(vial,VW,VH), rc=setup(res,RW,RH);
+  function drawVial(){
+    vc.clearRect(0,0,VW,VH);
+    vc.fillStyle='#d8dde0'; vc.fillRect(36,6,38,12);
+    vc.save(); vc.beginPath(); vc.moveTo(30,22); vc.lineTo(80,22); vc.lineTo(84,168); vc.quadraticCurveTo(84,182,70,182); vc.lineTo(40,182); vc.quadraticCurveTo(26,182,26,168); vc.closePath(); vc.clip();
+    vc.fillStyle='#eef3f5'; vc.fillRect(0,0,VW,VH);
+    vc.fillStyle='#dba08e'; vc.fillRect(24,60,64,124); for(var y=60;y<184;y+=1) for(var x=24;x<88;x+=1){ if(R()<0.18){ vc.fillStyle=R()<0.5?'rgba(196,96,70,.35)':'rgba(250,240,232,.35)'; vc.fillRect(x,y,1,1); } }
+    vc.restore();
+    vc.strokeStyle='#8a979d'; vc.lineWidth=2; vc.beginPath(); vc.moveTo(30,22); vc.lineTo(80,22); vc.lineTo(84,168); vc.quadraticCurveTo(84,182,70,182); vc.lineTo(40,182); vc.quadraticCurveTo(26,182,26,168); vc.closePath(); vc.stroke();
+    vc.fillStyle='#f4ecd6'; vc.fillRect(22,86,66,40); vc.strokeStyle='#b9a77a'; vc.lineWidth=1; vc.strokeRect(22,86,66,40);
+    vc.fillStyle='#2b2414'; vc.font='14px Caveat, cursive'; vc.textAlign='center'; vc.fillText('Best of',55,103); vc.fillText('the Island',55,119);
+  }
+  function blank(msg){ rc.clearRect(0,0,RW,RH); rc.fillStyle='#e9e6dc'; rc.fillRect(0,0,RW,RH); rc.fillStyle='#6b6a62'; rc.font='13px IBM Plex Mono, monospace'; rc.textAlign='center'; rc.fillText(msg,RW/2,RH/2); }
+  function angular(cx,cy,r,col){ rc.fillStyle=col; rc.beginPath(); var n=5+Math.floor(R()*3); for(var i=0;i<n;i++){ var a=i/n*Math.PI*2+R()*.5, rr=r*(0.7+R()*.45); rc.lineTo(cx+Math.cos(a)*rr, cy+Math.sin(a)*rr); } rc.closePath(); rc.fill(); }
+  function round(cx,cy,r,col){ rc.fillStyle=col; rc.beginPath(); rc.ellipse(cx,cy,r,r*(0.8+R()*.25),R()*3,0,Math.PI*2); rc.fill(); rc.fillStyle='rgba(255,255,255,.55)'; rc.beginPath(); rc.arc(cx-r*.3,cy-r*.3,r*.3,0,Math.PI*2); rc.fill(); }
+  function loupe(){
+    rc.clearRect(0,0,RW,RH); rc.fillStyle='#2b2a26'; rc.fillRect(0,0,RW,RH);
+    rc.save(); rc.beginPath(); rc.arc(RW/2,RH/2,84,0,Math.PI*2); rc.clip();
+    rc.fillStyle='#d9d2c2'; rc.fillRect(0,0,RW,RH);
+    for(var i=0;i<46;i++) angular(60+R()*180, 10+R()*160, 8+R()*5, grain('red'));
+    for(i=0;i<170;i++) round(60+R()*180, 10+R()*160, 2.6+R()*1.6, grain('white'));
+    for(i=0;i<16;i++) round(60+R()*180, 10+R()*160, 2.8, '#161616');
+    rc.restore();
+    rc.strokeStyle='#8a7d55'; rc.lineWidth=8; rc.beginPath(); rc.arc(RW/2,RH/2,86,0,Math.PI*2); rc.stroke();
+    cap.textContent='Under the loupe: angular rust-red grains, small round glassy white grains, and a few black ones.';
+  }
+  function magnet(){
+    rc.clearRect(0,0,RW,RH); rc.fillStyle='#e9e6dc'; rc.fillRect(0,0,RW,RH);
+    for(var i=0;i<900;i++){ var r=R(); rc.fillStyle=grain(r<0.5?'red':'white'); rc.fillRect(40+R()*220,140+R()*28,2,2); }
+    rc.fillStyle='#b31f2d'; rc.fillRect(110,24,24,62); rc.fillRect(166,24,24,62); rc.fillRect(110,14,80,20);
+    rc.fillStyle='#9aa0a4'; rc.fillRect(110,80,24,14); rc.fillRect(166,80,24,14);
+    for(i=0;i<34;i++){ round(112+R()*20, 96+R()*10, 2.2, '#161616'); round(168+R()*20, 96+R()*10, 2.2, '#161616'); }
+    cap.textContent='A scatter of black grains jumps up and clings to the magnet. The red and white grains stay put.';
+  }
+  function sieve(){
+    rc.clearRect(0,0,RW,RH); rc.fillStyle='#e9e6dc'; rc.fillRect(0,0,RW,RH);
+    rc.strokeStyle='#6b6a62'; rc.lineWidth=3; rc.beginPath(); rc.ellipse(150,62,110,26,0,0,Math.PI*2); rc.stroke();
+    rc.save(); rc.beginPath(); rc.ellipse(150,62,106,23,0,0,Math.PI*2); rc.clip();
+    rc.strokeStyle='rgba(107,106,98,.45)'; rc.lineWidth=1; for(var x=40;x<262;x+=6){ rc.beginPath(); rc.moveTo(x,30); rc.lineTo(x,96); rc.stroke(); } for(var y=36;y<92;y+=6){ rc.beginPath(); rc.moveTo(40,y); rc.lineTo(262,y); rc.stroke(); }
+    for(var i=0;i<60;i++) angular(70+R()*160, 48+R()*28, 6+R()*3, grain('red'));
+    rc.restore();
+    rc.fillStyle='#9aa0a4'; rc.beginPath(); rc.ellipse(150,150,104,22,0,0,Math.PI*2); rc.fill();
+    for(i=0;i<1400;i++){ var a=R()*Math.PI*2, rr=Math.sqrt(R()); var col=R()<0.93?grain('white'):'#161616'; rc.fillStyle=col; rc.fillRect(150+Math.cos(a)*rr*92, 150+Math.sin(a)*rr*16, 1.6, 1.6); }
+    cap.textContent='Coarse red grit stays in the mesh. Fine white sand, with a few black grains, runs through to the pan.';
+  }
+  function show(v){ st.pei.view=v; L.save(); if(v==='loupe') loupe(); else if(v==='magnet') magnet(); else if(v==='sieve') sieve(); else { blank('Pick a test from the kit.'); cap.textContent=''; } }
+  bL.addEventListener('click',function(){ show('loupe'); });
+  bM.addEventListener('click',function(){ show('magnet'); });
+  bS.addEventListener('click',function(){ show('sieve'); });
+  bR.addEventListener('click',function(){ show(null); cap.textContent='Back in the vial and shaken. From arm\'s length it looks pink again.'; });
+  drawVial(); show(st.pei.view);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ R=rng(902); drawVial(); R=rng(77); show(st.pei.view); });
+};
+
+/* ===================== QUEBEC ===================== */
+var QSEQ="UURRULUL";
+var QOPEN=[[[0,0],[1,0]],[[0,0],[0,1]],[[0,1],[1,1]],[[0,2],[1,2]],[[0,2],[0,3]],[[0,3],[1,3]],[[0,3],[0,4]],[[1,0],[2,0]],[[1,1],[1,2]],[[1,3],[1,4]],[[1,4],[2,4]],[[2,0],[3,0]],[[2,0],[2,1]],[[2,2],[3,2]],[[2,2],[2,3]],[[2,3],[2,4]],[[3,0],[4,0]],[[3,0],[3,1]],[[3,1],[4,1]],[[3,2],[4,2]],[[3,3],[3,4]],[[3,4],[4,4]],[[4,0],[4,1]],[[4,2],[4,3]],[[4,3],[4,4]]];
+var QLAB=[[17,62,53,88,31],[45,29,76,14,90],[38,81,22,67,59],[71,13,94,46,85],[26,58,'Gate',33,19]];
+PUZ.qc=function(area){
+  var st=S(); st.qc=st.qc||{p:[4,2]};
+  var open={}; QOPEN.forEach(function(e){ open[e[0]+'|'+e[1]]=1; open[e[1]+'|'+e[0]]=1; });
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'The sash · knot on the left, fringe on the right'));
+  var ss=sv('svg',{viewBox:'0 0 640 90',class:'svgbox',role:'img','aria-label':'Arrow sash. From the knot end: up, up, right, right, up, left, up, left.'});
+  var stripes=['#9e1b2b','#1f4e7a','#2f6b3a','#d8a33a','#9e1b2b','#1f4e7a'];
+  for(var i=0;i<6;i++) sv('rect',{x:60,y:15+i*10,width:520,height:10,fill:stripes[i]},ss);
+  sv('circle',{cx:44,cy:45,r:22,fill:'#9e1b2b',stroke:'#5b0f19','stroke-width':3},ss);
+  sv('path',{d:'M30 34 Q44 56 58 34 M30 56 Q44 34 58 56',stroke:'#5b0f19','stroke-width':3,fill:'none'},ss);
+  for(var f=0;f<14;f++) sv('line',{x1:580,y1:17+f*4.3,x2:626,y2:17+f*4.3+((f%2)?3:-3),stroke:stripes[f%6],'stroke-width':2.4},ss);
+  var rot={U:0,R:90,D:180,L:270};
+  QSEQ.split('').forEach(function(ch,i){
+    var cx=100+i*62;
+    var g=sv('g',{transform:'translate('+cx+' 45) rotate('+rot[ch]+')'},ss);
+    sv('path',{d:'M-20 0 L0 -20 L20 0 L0 20Z',fill:'#f3e7c4',opacity:.95},g);
+    sv('path',{d:'M-9 6 L0 -8 L9 6',stroke:'#1c2520','stroke-width':4,fill:'none','stroke-linejoin':'round'},g);
+  });
+  c1.appendChild(ss);
+  area.appendChild(c1);
+
+  var g2=h('div',{class:'grid2',style:'margin-top:20px'}); area.appendChild(g2);
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Palais de glace · chamber map'));
+  var CS=60, OX=10, OY=10;
+  var ms=sv('svg',{viewBox:'0 0 320 350',class:'svgbox',style:'max-width:380px',role:'img','aria-label':'Ice palace map, five by five chambers'});
+  for(var r=0;r<5;r++) for(var cc=0;cc<5;cc++){
+    sv('rect',{x:OX+cc*CS,y:OY+r*CS,width:CS,height:CS,fill:'#e4eef3',stroke:'#b9cfd9','stroke-width':1},ms);
+    var tx=sv('text',{x:OX+cc*CS+6,y:OY+r*CS+15,'font-size':11,fill:'#41606e'},ms); tx.textContent=QLAB[r][cc];
+  }
+  /* walls */
+  for(r=0;r<5;r++) for(cc=0;cc<5;cc++){
+    if(cc<4 && !open[[r,cc]+'|'+[r,cc+1]]) sv('line',{x1:OX+(cc+1)*CS,y1:OY+r*CS,x2:OX+(cc+1)*CS,y2:OY+(r+1)*CS,stroke:'#36566a','stroke-width':5,'stroke-linecap':'round'},ms);
+    if(r<4 && !open[[r,cc]+'|'+[r+1,cc]]) sv('line',{x1:OX+cc*CS,y1:OY+(r+1)*CS,x2:OX+(cc+1)*CS,y2:OY+(r+1)*CS,stroke:'#36566a','stroke-width':5,'stroke-linecap':'round'},ms);
+  }
+  sv('rect',{x:OX,y:OY,width:CS*5,height:CS*5,fill:'none',stroke:'#36566a','stroke-width':6},ms);
+  sv('rect',{x:OX+2*CS+14,y:OY+5*CS-4,width:CS-28,height:8,fill:'#e4eef3'},ms);
+  var gt=sv('text',{x:OX+2.5*CS,y:OY+5*CS+22,'text-anchor':'middle','font-size':11,fill:'#41606e'},ms); gt.textContent='ENTRANCE';
+  var tok=sv('circle',{r:13,fill:'#9e1b2b',stroke:'#fff','stroke-width':2.5},ms);
+  c2.appendChild(ms);
+  g2.appendChild(c2);
+
+  var c3=h('div',{class:'card'}); c3.appendChild(h('h4',null,'Walk the palace'));
+  c3.appendChild(h('p',{style:'margin:0 0 10px;font-size:15px'},'You start in the Gate Hall. Each button moves you one chamber. Walls of ice stop you.'));
+  var pad=h('div',{style:'display:grid;grid-template-columns:repeat(3,52px);gap:6px;justify-content:start'});
+  var msg=h('div',{class:'msg','aria-live':'polite'});
+  var D={U:[-1,0],D:[1,0],L:[0,-1],R:[0,1]};
+  var trail=[];
+  function mv(ch){
+    var p=st.qc.p, n=[p[0]+D[ch][0],p[1]+D[ch][1]];
+    if(n[0]<0||n[1]<0||n[0]>4||n[1]>4){ msg.className='msg bad'; msg.textContent= (n[0]>4&&p[1]===2)?'That\'s the way out into the cold. Back to the gate.':'Outer wall. Solid ice.'; return; }
+    if(!open[p+'|'+n]){ msg.className='msg bad'; msg.textContent='A wall of ice. You can\'t go that way.'; return; }
+    st.qc.p=n; trail.push(ch); L.save(); msg.className='msg'; msg.textContent='Chamber '+QLAB[n[0]][n[1]]+'.'; drawTok();
+  }
+  [['',''],['U','↑'],['',''],['L','←'],['D','↓'],['R','→']].forEach(function(b){
+    if(!b[0]){ pad.appendChild(h('span')); return; }
+    var bt=h('button',{class:'btn',type:'button','aria-label':{U:'Up',D:'Down',L:'Left',R:'Right'}[b[0]],style:'font-size:18px;padding:6px 0'},b[1]);
+    bt.addEventListener('click',function(){ mv(b[0]); }); pad.appendChild(bt);
+  });
+  c3.appendChild(pad);
+  var rs=h('button',{class:'btn',type:'button',style:'margin-top:10px'},'Back to the Gate Hall');
+  rs.addEventListener('click',function(){ st.qc.p=[4,2]; trail=[]; L.save(); msg.className='msg'; msg.textContent='Back at the gate.'; drawTok(); });
+  c3.appendChild(rs); c3.appendChild(msg);
+  g2.appendChild(c3);
+  function drawTok(){ tok.setAttribute('cx',OX+st.qc.p[1]*CS+CS/2); tok.setAttribute('cy',OY+st.qc.p[0]*CS+CS/2+6); }
+  drawTok();
+};
+
+/* ===================== ONTARIO ===================== */
+var LAKES={sup:{n:'Lake Superior',x:70,y:70},mic:{n:'Lake Michigan',x:150,y:190},hur:{n:'Lake Huron',x:240,y:110},eri:{n:'Lake Erie',x:330,y:205},
+  ont:{n:'Lake Ontario',x:420,y:145},atl:{n:'Atlantic (via Gulf of St. Lawrence)',x:560,y:60},ott:{n:'Ottawa',x:470,y:65},hud:{n:'Hudson River, New York',x:470,y:255},
+  mis:{n:'Mississippi River',x:90,y:270}};
+var CH=[
+ {id:'stm',n:'St. Marys River & Soo Locks',a:'sup',b:'hur',locks:1,note:'Lift of about 7 m.',ok:true,down:'sup'},
+ {id:'mac',n:'Straits of Mackinac',a:'hur',b:'mic',locks:0,note:'Open water. Both lakes sit at the same level.',ok:true,down:null},
+ {id:'scd',n:'St. Clair & Detroit Rivers',a:'hur',b:'eri',locks:0,note:'Dredged channel, river current.',ok:true,down:'hur'},
+ {id:'wel',n:'Welland Canal',a:'eri',b:'ont',locks:8,note:'Lifts ships 99 m around Niagara.',ok:true,down:'eri'},
+ {id:'nia',n:'Niagara River',a:'eri',b:'ont',locks:0,note:'Shortest way. No locks at all.',ok:'falls',down:'eri'},
+ {id:'stl',n:'St. Lawrence Seaway',a:'ont',b:'atl',locks:7,note:'Montreal to Lake Ontario.',ok:true,down:'ont'},
+ {id:'trs',n:'Trent–Severn Waterway',a:'hur',b:'ont',locks:44,note:'Georgian Bay to Lake Ontario. Boats under 30 m.',ok:'small',down:'hur'},
+ {id:'rid',n:'Rideau Canal',a:'ont',b:'ott',locks:45,note:'Kingston to Ottawa. Boats under 27 m.',ok:'small',down:null},
+ {id:'erc',n:'Erie Canal',a:'eri',b:'hud',locks:35,note:'Buffalo to Albany. Barges under 91 m.',ok:'small',down:'eri'},
+ {id:'chi',n:'Chicago Sanitary and Ship Canal',a:'mic',b:'mis',locks:2,note:'Barge tows to the Gulf of Mexico.',ok:'wrong',down:'mic'}
+];
+PUZ.on=function(area){
+  var st=S(); st.on=st.on||{at:'sup',route:[],visited:['sup']};
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'The lakes · she starts at Thunder Bay'));
+  var ms=sv('svg',{viewBox:'0 0 620 300',class:'svgbox',role:'img','aria-label':'Schematic map of the Great Lakes and their outlets'});
+  var lines={};
+  CH.forEach(function(c){ var A=LAKES[c.a],B=LAKES[c.b]; var off=(c.id==='nia')?14:(c.id==='trs'?-10:0);
+    lines[c.id]=sv('path',{d:'M'+A.x+' '+A.y+' Q'+((A.x+B.x)/2+off)+' '+((A.y+B.y)/2-off)+' '+B.x+' '+B.y,stroke:'var(--muted)','stroke-width':2,'stroke-dasharray':'4 4',fill:'none'},ms); });
+  Object.keys(LAKES).forEach(function(k){
+    var Lk=LAKES[k]; var big=['sup','mic','hur','eri','ont'].indexOf(k)>=0;
+    sv(big?'ellipse':'circle', big?{cx:Lk.x,cy:Lk.y,rx:k==='sup'?52:30,ry:k==='mic'?40:22,fill:'#7fb2c7',stroke:'#2e5a66','stroke-width':1.5}:{cx:Lk.x,cy:Lk.y,r:7,fill:'var(--muted)'},ms);
+    var t=sv('text',{x:Lk.x,y:Lk.y+(big?4:20),'text-anchor':'middle','font-size':10,fill:big?'#14323b':'var(--ink)'},ms); t.textContent=big?Lk.n.replace('Lake ',''):Lk.n.split(' (')[0];
+  });
+  var ship=sv('path',{d:'M-12 -4 L10 -4 L14 0 L10 4 L-12 4Z',fill:'#b31f2d',stroke:'#fff','stroke-width':1.5},ms);
+  c1.appendChild(ms);
+  var log=h('div',{class:'msg','aria-live':'polite'}); c1.appendChild(log);
+  var rr=h('div',{class:'row',style:'margin-top:8px'});
+  var rs=h('button',{class:'btn',type:'button'},'Start again at Thunder Bay'); rr.appendChild(rs); c1.appendChild(rr);
+  g.appendChild(c1);
+
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Route cards · click one to sail through it'));
+  c2.appendChild(h('p',{style:'margin:0 0 10px;font-size:15px'},'<b>M.V. Shelter Bay</b>, a laker, 222 m long. She must call at all five lakes and finish at the Atlantic. The mate\'s note: "Remember HOMES."'));
+  var list=h('div',{style:'display:grid;gap:6px'}); c2.appendChild(list);
+  g.appendChild(c2);
+
+  function lakeAt(){ return LAKES[st.on.at].n; }
+  function drawAll(){
+    var p=LAKES[st.on.at]; ship.setAttribute('transform','translate('+p.x+' '+(p.y-26)+')');
+    CH.forEach(function(c){ var used=st.on.route.indexOf(c.id)>=0; lines[c.id].style.stroke=used?'var(--red)':'var(--muted)'; lines[c.id].setAttribute('stroke-width',used?4:2); lines[c.id].setAttribute('stroke-dasharray',used?'':'4 4'); });
+    list.innerHTML='';
+    CH.forEach(function(c){
+      var b=h('button',{class:'choice',type:'button',style:'margin:0'},'<b>'+esc(c.n)+'</b> · <span class="mono" style="font-size:12.5px">'+c.locks+' lock'+(c.locks===1?'':'s')+'</span><br><span style="font-size:13.5px;color:var(--muted)">'+esc(LAKES[c.a].n.split(' (')[0])+' ↔ '+esc(LAKES[c.b].n.split(' (')[0])+'. '+esc(c.note)+'</span>');
+      b.addEventListener('click',function(){ sail(c); });
+      list.appendChild(b);
+    });
+    var r=st.on.route.map(function(id){ return CH.filter(function(c){return c.id===id;})[0].n; });
+    if(!log.dataset.keep) { log.className='msg'; log.textContent= r.length? 'Route so far: '+r.join(' → ')+'. Now on '+lakeAt()+'.' : 'Alongside at Thunder Bay, '+lakeAt()+'.'; }
+    delete log.dataset.keep;
+  }
+  function fail(t){ log.className='msg bad'; log.textContent=t; log.dataset.keep=1; }
+  function sail(c){
+    var at=st.on.at; if(c.a!==at && c.b!==at){ fail('She\'s on '+lakeAt()+'. '+c.n+' doesn\'t touch it.'); drawAll(); return; }
+    var to=(c.a===at)?c.b:c.a;
+    if(c.down && c.down!==at){ fail('That\'s upstream. She\'d be climbing back the way the water came.'); drawAll(); return; }
+    if(c.ok==='falls'){ fail('Over Niagara Falls. Annie Edson Taylor survived it in a barrel; a laker won\'t. Start again.'); reset(true); return; }
+    if(c.ok==='small'){ fail('She\'s 222 m. The '+c.n+' takes nothing that size. She can\'t get in.'); drawAll(); return; }
+    if(c.ok==='wrong'){ fail('That way leads to the Gulf of Mexico, not the Atlantic. Wrong ocean.'); drawAll(); return; }
+    st.on.at=to; st.on.route.push(c.id); if(st.on.visited.indexOf(to)<0) st.on.visited.push(to); L.save();
+    if(to==='atl'){
+      var miss=['sup','mic','hur','eri','ont'].filter(function(k){return st.on.visited.indexOf(k)<0;});
+      if(miss.length){ fail('She reached the sea, but never called at '+miss.map(function(k){return LAKES[k].n;}).join(' or ')+'. The cargo for there is still aboard.'); drawAll(); return; }
+      log.className='msg good'; log.textContent='Out to sea, and every lake called at. Count the locks she passed through on the way.'; log.dataset.keep=1;
+    }
+    drawAll();
+  }
+  function reset(keep){ st.on={at:'sup',route:[],visited:['sup']}; L.save(); if(keep) log.dataset.keep=1; drawAll(); }
+  rs.addEventListener('click',function(){ reset(false); });
+  drawAll();
+};
+
+})();
+</script><script>
+(function(){
+"use strict";
+var L=window.LWH, h=L.h, sv=L.sv, esc=L.esc, PUZ=L.PUZ;
+function S(){ return L.getS(); }
+function rng(seed){ return function(){ seed=(seed*1664525+1013904223)%4294967296; return seed/4294967296; }; }
+
+/* ===================== MANITOBA ===================== */
+var MBG=["WWWWWW","HTWWTT","HHTTTT","HHTTRT","TTTTTT"];
+var MBL=[[71,52,38,90,47,15],[63,84,26,11,58,29],[44,17,95,32,76,60],[23,69,81,54,12,87],[35,98,41,66,73,20]];
+var BEARS={m:{n:'Mother and cub',t:'M'},y:{n:'Young male',t:'Y'},o:{n:'Old male',t:'O'}};
+PUZ.mb=function(area){
+  var st=S(); st.mb=st.mb||{pos:{},sel:'m'};
+  var pos=st.mb.pos;
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Churchill · north is up, Hudson Bay along the top'));
+  var picks=h('div',{class:'row',style:'margin-bottom:10px'}); c1.appendChild(picks);
+  var grid=h('div',{class:'cellgrid',style:'grid-template-columns:repeat(6,minmax(0,1fr))'}); c1.appendChild(grid);
+  c1.appendChild(h('p',{style:'font-size:13.5px;color:var(--muted);margin:8px 0 0'},'Blue: the bay. Brown: town. Dark: the old dump. Green: open tundra. Pick a bear, then a square. Click a placed bear to lift it.'));
+  g.appendChild(c1);
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Polar Bear Holding Facility · release rules'));
+  var rl=h('ul',{class:'rules'}); c2.appendChild(rl);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); c2.appendChild(msg);
+  g.appendChild(c2);
+  var COL={W:'#8dbfd2',H:'#c2ae8a',R:'#5f513f',T:'#cfd7a6'};
+  function adj(a,b){ return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]))<=1; }
+  function shore(x){ return [[-1,0],[1,0],[0,-1],[0,1]].some(function(d){ var r=x[0]+d[0],c=x[1]+d[1]; return r>=0&&r<5&&c>=0&&c<6&&MBG[r][c]==='W'; }); }
+  function td(x){ var m=9; for(var r=0;r<5;r++) for(var c=0;c<6;c++) if(MBG[r][c]==='H') m=Math.min(m,Math.max(Math.abs(x[0]-r),Math.abs(x[1]-c))); return m; }
+  function nearR(x){ for(var r=0;r<5;r++) for(var c=0;c<6;c++) if(MBG[r][c]==='R' && adj(x,[r,c])) return true; return false; }
+  var RULES=[
+    {t:'Every bear goes on open tundra: not in town, not on the bay, not at the dump.',need:[],f:function(){ var ks=Object.keys(pos); if(!ks.length) return null; return ks.every(function(k){ return MBG[pos[k][0]][pos[k][1]]==='T'; }); }},
+    {t:'No two bears in neighbouring squares, diagonals included.',need:[],f:function(){ var ks=Object.keys(pos); if(ks.length<2) return null; for(var i=0;i<ks.length;i++) for(var j=i+1;j<ks.length;j++) if(adj(pos[ks[i]],pos[ks[j]])) return false; return true; }},
+    {t:'Mother and cub at least three squares from any part of town. A diagonal step counts as one.',need:['m'],f:function(){ return td(pos.m)>=3; }},
+    {t:'The old male waits on the shore, in a square that shares a side with the bay.',need:['o'],f:function(){ return shore(pos.o); }},
+    {t:'The old male goes east of the mother and cub.',need:['o','m'],f:function(){ return pos.o[1]>pos.m[1]; }},
+    {t:'The young male goes next to the old dump. He\'d find his way there anyway.',need:['y'],f:function(){ return nearR(pos.y); }}
+  ];
+  function draw(){
+    picks.innerHTML='';
+    Object.keys(BEARS).forEach(function(k){
+      var b=h('button',{class:'pick',type:'button','aria-pressed':String(st.mb.sel===k)}, BEARS[k].t+' · '+esc(BEARS[k].n));
+      b.addEventListener('click',function(){ st.mb.sel=k; L.save(); draw(); }); picks.appendChild(b);
+    });
+    grid.innerHTML='';
+    for(var r=0;r<5;r++) for(var c=0;c<6;c++){(function(r,c){
+      var who=null; for(var k in pos) if(pos[k][0]===r&&pos[k][1]===c) who=k;
+      var t=MBG[r][c];
+      var b=h('button',{class:'cell',type:'button',style:'background:'+COL[t]+';color:'+(t==='R'?'#efe6d2':'#1c2520'),
+        'aria-label':'Square '+MBL[r][c]+', '+({W:'bay',H:'town',R:'dump',T:'tundra'}[t])+(who?', '+BEARS[who].n:'')});
+      b.innerHTML='<span>'+MBL[r][c]+'</span>'+(who?'<span class="tok"><span style="background:#fff;color:#1c2520;border:2px solid #1c2520;border-radius:50%;width:30px;height:30px;display:grid;place-items:center">'+BEARS[who].t+'</span></span>':'');
+      b.addEventListener('click',function(){ if(who){ delete pos[who]; st.mb.sel=who; } else { pos[st.mb.sel]=[r,c]; } L.save(); draw(); });
+      grid.appendChild(b);
+    })(r,c);}
+    rl.innerHTML=''; var all=true;
+    RULES.forEach(function(R,i){
+      var ok=R.need.every(function(k){return pos[k];}) ? R.f() : null;
+      if(ok!==true) all=false;
+      var ic= ok===null?'–':(ok?'✓':'✗');
+      var li=h('li',null,'<span class="ic" style="color:'+(ok===null?'var(--muted)':ok?'var(--good)':'var(--bad)')+'">'+ic+'</span><span>'+(i+1)+'. '+esc(R.t)+'</span>');
+      rl.appendChild(li);
+    });
+    var placed=Object.keys(pos).length===3;
+    msg.className='msg'+(placed&&all?' good':'');
+    msg.textContent= placed&&all ? 'All three released by the book. The old male\'s square is the number the warden logs.' : (placed?'Three bears placed, but at least one rule is broken.':'');
+  }
+  draw();
+};
+
+/* ===================== SASKATCHEWAN ===================== */
+var D7=["11111","00001","00010","00100","01000","01000","01000"];
+var D4=["00010","00110","01010","10010","11111","00010","00010"];
+PUZ.sk=function(area){
+  var st=S(); st.sk=st.sk||{dx:-74,dy:34};
+  var W=400,H=260, POL=[330,52];
+  var R=rng(1967);
+  var digits=[];
+  [[D7,128,78],[D4,212,78]].forEach(function(d){ d[0].forEach(function(row,ri){ row.split('').forEach(function(ch,ci){ if(ch==='1') digits.push([d[1]+ci*11+(R()-.5)*2.5, d[2]+ri*11+(R()-.5)*2.5]); }); }); });
+  var decoys=[], tries=0;
+  while(decoys.length<130 && tries<5000){ tries++;
+    var p=[8+R()*(W-16), 8+R()*(H-16)];
+    var bad=digits.concat([POL]).some(function(q){ return Math.hypot(p[0]-q[0],p[1]-q[1])<12; }) || decoys.some(function(q){ return Math.hypot(p[0]-q[0],p[1]-q[1])<8; });
+    if(!bad) decoys.push(p);
+  }
+  var extra=[]; for(var i=0;i<45;i++) extra.push([R()*W, R()*H]);
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Star card under the window film · drag the film'));
+  var s=sv('svg',{viewBox:'0 0 '+W+' '+H,class:'svgbox',style:'touch-action:none;border-radius:6px',role:'img','aria-label':'Star card with a draggable frosted window film on top'});
+  sv('rect',{x:0,y:0,width:W,height:H,fill:'#0e1a36'},s);
+  decoys.concat(digits).forEach(function(q,i){ sv('circle',{cx:q[0],cy:q[1],r:1.2+((i*7)%5)*.22,fill:'#f2f0e1'},s); });
+  sv('circle',{cx:POL[0],cy:POL[1],r:3.2,fill:'#fff6c8'},s);
+  sv('path',{d:'M'+(POL[0]-8)+' '+POL[1]+' H'+(POL[0]+8)+' M'+POL[0]+' '+(POL[1]-8)+' V'+(POL[1]+8),stroke:'#fff6c8','stroke-width':1},s);
+  var film=sv('g',{style:'cursor:grab'},s);
+  sv('rect',{x:-200,y:-200,width:W+400,height:H+400,fill:'#9fb6c9',opacity:.10},film);
+  decoys.concat(extra).forEach(function(q){ sv('circle',{cx:q[0],cy:q[1],r:5.6,fill:'#e8eef2',opacity:.95},film); });
+  /* elevators */
+  [[40,206,26],[74,188,30],[372,214,24],[300,224,22]].forEach(function(e){ sv('rect',{x:e[0]-e[2]/2,y:e[1],width:e[2],height:H+200-e[1],fill:'#141414'},film); sv('path',{d:'M'+(e[0]-e[2]/2-3)+' '+e[1]+' L'+e[0]+' '+(e[1]-14)+' L'+(e[0]+e[2]/2+3)+' '+e[1]+'Z',fill:'#141414'},film); });
+  sv('rect',{x:POL[0]-15,y:118,width:30,height:H+200-118,fill:'#141414'},film);
+  sv('path',{d:'M'+(POL[0]-18)+' 118 L'+POL[0]+' 100 L'+(POL[0]+18)+' 118Z',fill:'#141414'},film);
+  sv('line',{x1:POL[0],y1:100,x2:POL[0],y2:POL[1],stroke:'#141414','stroke-width':2.5},film);
+  sv('path',{d:'M'+POL[0]+' '+(POL[1]+6)+' l9 3 l-9 3z',fill:'#141414'},film);
+  sv('rect',{x:-3,y:-3,width:W+6,height:H+6,fill:'none',stroke:'#5b4a35','stroke-width':10},film);
+  c1.appendChild(s);
+  var nud=h('div',{class:'row',style:'margin-top:8px'});
+  var msg=h('div',{class:'msg','aria-live':'polite'});
+  [['←',-2,0],['→',2,0],['↑',0,-2],['↓',0,2]].forEach(function(b){ var bt=h('button',{class:'btn',type:'button','aria-label':'Nudge film '+({'←':'left','→':'right','↑':'up','↓':'down'}[b[0]])},b[0]); bt.addEventListener('click',function(){ st.sk.dx+=b[1]; st.sk.dy+=b[2]; snap(); place(); }); nud.appendChild(bt); });
+  c1.appendChild(nud); c1.appendChild(msg);
+  g.appendChild(c1);
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Prairie Farmer\'s Almanac, 1967'));
+  c2.appendChild(h('p',{class:'note',style:'margin:0'},'To see the true sky, stand at the kitchen window so the Pole Star sits on the tip of the tallest elevator\'s weathervane. The frost takes care of the rest.'));
+  c2.appendChild(h('p',{style:'font-size:14.5px;color:var(--muted);margin:10px 0 0'},'The Pole Star is marked with a cross on the star card.'));
+  g.appendChild(c2);
+  function snap(){ if(Math.abs(st.sk.dx)<=4 && Math.abs(st.sk.dy)<=4){ st.sk.dx=0; st.sk.dy=0; } L.save(); }
+  function place(){ film.setAttribute('transform','translate('+st.sk.dx+' '+st.sk.dy+')'); var on=(st.sk.dx===0&&st.sk.dy===0); msg.className='msg'+(on?' good':''); msg.textContent=on?'The vane is on the Pole Star. Look at what the frost left clear.':''; }
+  var drag=null;
+  function pt(e){ var m=s.getScreenCTM(); return {x:(e.clientX-m.e)/m.a, y:(e.clientY-m.f)/m.d}; }
+  film.addEventListener('pointerdown',function(e){ drag={p:pt(e),dx:st.sk.dx,dy:st.sk.dy}; film.setPointerCapture(e.pointerId); film.style.cursor='grabbing'; });
+  film.addEventListener('pointermove',function(e){ if(!drag) return; var q=pt(e); st.sk.dx=Math.max(-160,Math.min(160,drag.dx+q.x-drag.p.x)); st.sk.dy=Math.max(-120,Math.min(120,drag.dy+q.y-drag.p.y)); film.setAttribute('transform','translate('+st.sk.dx+' '+st.sk.dy+')'); });
+  film.addEventListener('pointerup',function(){ if(!drag) return; drag=null; film.style.cursor='grab'; st.sk.dx=Math.round(st.sk.dx); st.sk.dy=Math.round(st.sk.dy); snap(); place(); });
+  place();
+};
+
+/* ===================== ALBERTA ===================== */
+var CRIT=[
+ {s:'A',b:28,t:24,tail:'flat',d:'scaly, flattened side to side',burrow:1},
+ {s:'B',b:23,t:19,tail:'scaly',d:'scaly, round',burrow:8},
+ {s:'C',b:9,t:8,tail:'twotone',d:'furred, dark above and white below',burrow:6},
+ {s:'D',b:20,t:17,tail:'bushy',d:'furred and bushy',burrow:4},
+ {s:'E',b:11,t:4,tail:'furred',d:'short, furred',burrow:5},
+ {s:'F',b:8,t:8,tail:'scaly',d:'scaly, round',burrow:7},
+ {s:'G',b:18,t:21,tail:'scaly',d:'scaly, round',burrow:3},
+ {s:'H',b:24,t:14,tail:'blacktip',d:'furred, black tip',burrow:2},
+ {s:'I',b:22,t:7,tail:'bushy',d:'furred, flattened',burrow:0},
+ {s:'J',b:15,t:6,tail:'naked',d:'nearly naked',burrow:9}
+];
+var WALL=[5,8,0,6,2,9,3,7,1,4];
+function critSVG(c){
+  var k=2.2, x0=14, bw=c.b*k, tw=c.t*k, cy=34;
+  var o='<svg viewBox="0 0 150 56" role="img" aria-label="Specimen '+c.s+' silhouette">';
+  o+='<ellipse cx="'+(x0+4+bw/2)+'" cy="'+cy+'" rx="'+(bw/2)+'" ry="'+Math.max(5,Math.min(12,c.b*.42))+'" style="fill:var(--muted)"/>';
+  o+='<circle cx="'+(x0+2)+'" cy="'+(cy-2)+'" r="'+Math.max(4,Math.min(8,c.b*.28))+'" style="fill:var(--muted)"/>';
+  o+='<circle cx="'+(x0+4)+'" cy="'+(cy-9)+'" r="2.6" style="fill:var(--muted)"/>';
+  var tx=x0+4+bw;
+  if(c.tail==='flat') o+='<path d="M'+tx+' '+cy+' L'+(tx+tw)+' '+(cy-5)+' L'+(tx+tw)+' '+(cy+3)+'Z" style="fill:var(--ink)"/>';
+  else if(c.tail==='bushy') o+='<ellipse cx="'+(tx+tw/2)+'" cy="'+(cy-2)+'" rx="'+(tw/2+1)+'" ry="5" style="fill:var(--muted)"/>';
+  else if(c.tail==='naked') o+='<line x1="'+tx+'" y1="'+cy+'" x2="'+(tx+tw)+'" y2="'+(cy+2)+'" stroke="#d58f8f" stroke-width="1.6"/>';
+  else if(c.tail==='scaly'){ o+='<line x1="'+tx+'" y1="'+cy+'" x2="'+(tx+tw)+'" y2="'+(cy+6)+'" style="stroke:var(--ink)" stroke-width="1.8"/>'; for(var i=4;i<tw;i+=5){ var px=tx+i, py=cy+6*i/tw; o+='<line x1="'+px+'" y1="'+(py-2.2)+'" x2="'+px+'" y2="'+(py+2.2)+'" style="stroke:var(--ink)" stroke-width=".8"/>'; } }
+  else if(c.tail==='blacktip') o+='<line x1="'+tx+'" y1="'+cy+'" x2="'+(tx+tw*.72)+'" y2="'+(cy-2)+'" style="stroke:var(--muted)" stroke-width="4" stroke-linecap="round"/><line x1="'+(tx+tw*.72)+'" y1="'+(cy-2)+'" x2="'+(tx+tw)+'" y2="'+(cy-3)+'" stroke="#111" stroke-width="4" stroke-linecap="round"/>';
+  else if(c.tail==='twotone') o+='<line x1="'+tx+'" y1="'+cy+'" x2="'+(tx+tw)+'" y2="'+(cy+1)+'" style="stroke:var(--ink)" stroke-width="3"/><line x1="'+tx+'" y1="'+(cy+1.5)+'" x2="'+(tx+tw)+'" y2="'+(cy+2.5)+'" stroke="#eee" stroke-width="1.4"/>';
+  else o+='<line x1="'+tx+'" y1="'+cy+'" x2="'+(tx+tw)+'" y2="'+cy+'" style="stroke:var(--muted)" stroke-width="4" stroke-linecap="round"/>';
+  o+='<line x1="4" y1="52" x2="'+(4+10*k)+'" y2="52" style="stroke:var(--ink)" stroke-width="1"/><text x="'+(6+10*k)+'" y="54.5" font-size="6.5" style="fill:var(--muted)">10 cm</text>';
+  return o+'</svg>';
+}
+PUZ.ab=function(area){
+  var st=S(); st.ab=st.ab||{plug:{}};
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var guide=h('div',{class:'card'}); guide.appendChild(h('h4',null,'Alberta Rat Patrol · field guide'));
+  guide.appendChild(h('div',null,'<p style="margin-top:0"><b>A rat, for the purposes of the Act, is an animal with all three of:</b></p><ol style="margin:0;padding-left:20px"><li>an adult body length <b>over 15 cm</b>;</li><li>a tail that is <b>scaly and round</b>, not flattened, not furred;</li><li>a tail <b>at least half</b> as long as the body.</li></ol><p style="margin-bottom:0">Anything else is a resident of Alberta and stays where it is. Muskrats, gophers, voles, mice, weasels and pack rats are all residents.</p>'));
+  g.appendChild(guide);
+  var wc=h('div',{class:'card'}); wc.appendChild(h('h4',null,'The border wall · patrol walks west to east'));
+  var lab=h('div',{class:'row',style:'justify-content:space-between;margin-bottom:4px'},'<span class="lbl">West · Saskatchewan side</span><span class="lbl">East</span>'); wc.appendChild(lab);
+  var wall=h('div',{class:'wall'}); wc.appendChild(wall);
+  var rr=h('div',{class:'row',style:'margin-top:10px'}); var run=h('button',{class:'btn primary',type:'button'},'Run the patrol'); rr.appendChild(run); wc.appendChild(rr);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); wc.appendChild(msg);
+  wc.appendChild(h('p',{style:'font-size:14px;color:var(--muted);margin:6px 0 0'},'Click a burrow to plug it. Plug only the burrows a rat came from.'));
+  g.appendChild(wc);
+  function drawWall(){
+    wall.innerHTML='';
+    WALL.forEach(function(n){ var b=h('button',{class:'burrow',type:'button','aria-pressed':String(!!st.ab.plug[n]),'aria-label':'Burrow '+n+(st.ab.plug[n]?', plugged':'')}, String(n));
+      b.addEventListener('click',function(){ st.ab.plug[n]=!st.ab.plug[n]; if(!st.ab.plug[n]) delete st.ab.plug[n]; L.save(); msg.textContent=''; drawWall(); }); wall.appendChild(b); });
+  }
+  drawWall();
+  run.addEventListener('click',function(){
+    var rats={8:1,3:1}; var plugged=Object.keys(st.ab.plug).map(Number);
+    var missed=Object.keys(rats).filter(function(k){return !st.ab.plug[k];}).length;
+    var wrong=plugged.filter(function(n){return !rats[n];}).length;
+    if(!missed && !wrong){ msg.className='msg good'; msg.textContent='The border holds and no citizen was walled in. Read the plugged burrows in patrol order.'; }
+    else if(missed && wrong){ msg.className='msg bad'; msg.textContent='A rat got through, and you walled in a resident.'; }
+    else if(missed){ msg.className='msg bad'; msg.textContent= missed===2?'Both rats got through.':'One rat got through.'; }
+    else { msg.className='msg bad'; msg.textContent='You walled in '+(wrong===1?'a resident':wrong+' residents')+'. They are furious.'; }
+  });
+  var cr=h('div',{class:'critters',style:'margin-top:20px'});
+  CRIT.forEach(function(c){
+    cr.appendChild(h('div',{class:'crit'},'<b>Specimen '+c.s+'</b>'+critSVG(c)+'<div class="tagline">Body '+c.b+' cm · tail '+c.t+' cm<br>Tail: '+esc(c.d)+'<br>Found at burrow '+c.burrow+'</div>'));
+  });
+  area.appendChild(cr);
+};
+
+/* ===================== BRITISH COLUMBIA ===================== */
+var CUR={6:4.6,7:3.4,8:1.6,9:-0.8,10:-3.1,11:-4.9,12:-5.6,13:-4.6,14:-2.4,15:0.2,16:2.7,17:4.4,18:5.1,19:3.9,20:1.5,21:-1.2};
+function curAt(min){ var t=min/60, hh=Math.floor(t), f=t-hh; if(hh>=21) return CUR[21]; return CUR[hh]+(CUR[hh+1]-CUR[hh])*f; }
+var SAIL=[[14,'7:10','Tsawwassen','Swartz Bay'],[22,'8:40','Swartz Bay','Tsawwassen'],[31,'14:20','Tsawwassen','Swartz Bay'],[26,'14:40','Swartz Bay','Tsawwassen'],[37,'16:30','Swartz Bay','Tsawwassen'],[43,'19:10','Tsawwassen','Swartz Bay']];
+PUZ.bc=function(area){
+  var st=S(); st.bc=st.bc||{t:600};
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Current table · Active Pass'));
+  var W=460,H=220,x0=40,x1=446,y0=16,y1=190;
+  function X(m){ return x0+(m-360)/(1260-360)*(x1-x0); } function Y(v){ return y0+(6-v)/12*(y1-y0); }
+  var s=sv('svg',{viewBox:'0 0 '+W+' '+H,class:'svgbox',role:'img','aria-label':'Current in Active Pass from 06:00 to 21:00. Positive values flood east, negative values ebb west.'});
+  for(var v=-6;v<=6;v+=2){ sv('line',{x1:x0,y1:Y(v),x2:x1,y2:Y(v),stroke:'var(--rule)','stroke-width':1},s); var t=sv('text',{x:x0-6,y:Y(v)+3,'text-anchor':'end','font-size':9,fill:'var(--muted)'},s); t.textContent=(v>0?'+':'')+v; }
+  for(var hr=6;hr<=21;hr+=3){ var tt=sv('text',{x:X(hr*60),y:y1+16,'text-anchor':'middle','font-size':9,fill:'var(--muted)'},s); tt.textContent=String(hr).padStart(2,'0')+':00'; sv('line',{x1:X(hr*60),y1:y0,x2:X(hr*60),y2:y1,stroke:'var(--rule)','stroke-width':1},s); }
+  sv('line',{x1:x0,y1:Y(0),x2:x1,y2:Y(0),stroke:'var(--ink)','stroke-width':1},s);
+  sv('rect',{x:x0,y:Y(2),width:x1-x0,height:Y(-2)-Y(2),fill:'var(--hi)'},s);
+  var a=sv('text',{x:x0+4,y:y0+10,'font-size':9,fill:'var(--muted)'},s); a.textContent='FLOOD · sets east';
+  var b=sv('text',{x:x0+4,y:y1-4,'font-size':9,fill:'var(--muted)'},s); b.textContent='EBB · sets west';
+  var d=''; for(var m=360;m<=1260;m+=10) d+=(m===360?'M':'L')+X(m).toFixed(1)+' '+Y(curAt(m)).toFixed(1)+' ';
+  sv('path',{d:d,fill:'none',stroke:'var(--stamp)','stroke-width':2.4},s);
+  var cur=sv('line',{y1:y0,y2:y1,stroke:'var(--red)','stroke-width':1.5},s);
+  var dot=sv('circle',{r:4,fill:'var(--red)'},s);
+  c1.appendChild(s);
+  var sl=h('input',{type:'range',min:'360',max:'1260',step:'5',value:String(st.bc.t),id:'bc-t','aria-label':'Time of day',style:'width:100%'});
+  var rd=h('div',{class:'mono',style:'font-size:15px','aria-live':'polite'});
+  c1.appendChild(sl); c1.appendChild(rd);
+  function upd(){ var m=+sl.value; st.bc.t=m; L.save(); var vv=curAt(m); cur.setAttribute('x1',X(m)); cur.setAttribute('x2',X(m)); dot.setAttribute('cx',X(m)); dot.setAttribute('cy',Y(vv));
+    rd.textContent=String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')+' · '+Math.abs(vv).toFixed(1)+' knots '+(Math.abs(vv)<0.05?'(slack)':vv>0?'flooding east':'ebbing west'); }
+  sl.addEventListener('input',upd); upd();
+  g.appendChild(c1);
+  var c2=h('div',{class:'stack'});
+  var sc=h('div',{class:'card'}); sc.appendChild(h('h4',null,'B.C. Ferries · summer schedule, 1967'));
+  sc.appendChild(h('div',{class:'scroll-x'},'<table class="keytable" style="margin-top:0"><thead><tr><th>Sailing</th><th>Departs</th><th>From</th><th>To</th></tr></thead><tbody>'+
+    SAIL.map(function(r){ return '<tr><td class="mono">No. '+r[0]+'</td><td class="mono">'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>'; }).join('')+'</tbody></table>'));
+  c2.appendChild(sc);
+  var nc=h('div',{class:'card'}); nc.appendChild(h('h4',null,'Pencilled on the back'));
+  nc.appendChild(h('p',{class:'note',style:'margin:0'},'Captain\'s rule: she takes Active Pass under 2 knots, and never against the current.'));
+  nc.appendChild(h('p',{style:'font-size:15px;margin:10px 0 0'},'Out of Tsawwassen she heads west and reaches the Pass 50 minutes after leaving. Out of Swartz Bay she heads east and reaches it 40 minutes after leaving.'));
+  c2.appendChild(nc);
+  g.appendChild(c2);
+};
+
+/* ===================== YUKON ===================== */
+var CLAIMS=[57,31,82,19,64,'DISC',46,73,28,90,15];
+PUZ.yt=function(area){
+  var st=S(); st.yt=st.yt||{mark:null};
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Bonanza Creek · registered claims'));
+  var CH=40, top=40;
+  var s=sv('svg',{viewBox:'0 0 300 '+(top+CLAIMS.length*CH+44),class:'svgbox',style:'max-width:340px',role:'img','aria-label':'Map of claims along Bonanza Creek, flowing toward the top of the map'});
+  var t1=sv('text',{x:150,y:16,'text-anchor':'middle','font-size':11,fill:'var(--ink)'},s); t1.textContent='To the Klondike River and Dawson';
+  var t2=sv('text',{x:150,y:top+CLAIMS.length*CH+30,'text-anchor':'middle','font-size':11,fill:'var(--ink)'},s); t2.textContent='Toward King Solomon Dome';
+  var rects=[];
+  CLAIMS.forEach(function(r,i){
+    var y=top+i*CH;
+    var rc=sv('rect',{x:40,y:y,width:220,height:CH-3,fill:r==='DISC'?'#d8b25a':'var(--paper-2)',stroke:'var(--rule)','stroke-width':1,style:'cursor:'+(r==='DISC'?'default':'pointer')},s);
+    rects.push(rc);
+    var lb=sv('text',{x:252,y:y+CH/2+3,'text-anchor':'end','font-size':11,fill:r==='DISC'?'#2b2414':'var(--ink)'},s);
+    lb.textContent= r==='DISC' ? 'DISCOVERY · Carmack' : 'Reg. '+r;
+    if(r!=='DISC'){ rc.setAttribute('tabindex','0'); rc.setAttribute('role','button'); rc.setAttribute('aria-label','Claim registered '+r);
+      var act=function(){ st.yt.mark=i; L.save(); draw(); };
+      rc.addEventListener('click',act); rc.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); }
+  });
+  var dp='M150 '+(top-6);
+  for(var y=top;y<=top+CLAIMS.length*CH;y+=20) dp+=' Q'+(y%40?160:140)+' '+(y+10)+' 150 '+(y+20);
+  sv('path',{d:dp,fill:'none',stroke:'#4f8fb0','stroke-width':6,'stroke-linecap':'round',opacity:.85},s);
+  for(var k=0;k<5;k++){ var ay=top+30+k*90; sv('path',{d:'M68 '+ay+' l-8 12 h16z',fill:'#4f8fb0'},s); }
+  var mk=sv('g',{},s);
+  c1.appendChild(s);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); c1.appendChild(msg);
+  c1.appendChild(h('p',{style:'font-size:14px;color:var(--muted);margin:4px 0 0'},'Arrows show the way the creek flows. Click a claim to mark the cache.'));
+  g.appendChild(c1);
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Note pinned to the map'));
+  c2.appendChild(h('p',{class:'note',style:'margin:0'},'Carmack staked Discovery. Skookum Jim staked One Above, and Tagish Charlie Two Below.<br><br>My cache: count three claims below Skookum\'s, then go one back up the creek.'));
+  c2.appendChild(h('p',{style:'font-size:15px;margin:12px 0 0'},'On the Klondike, claims were named by their distance from the discovery claim: "Above" for upstream, "Below" for downstream. The answer is the cache claim\'s registration number.'));
+  g.appendChild(c2);
+  function draw(){ mk.innerHTML=''; rects.forEach(function(r,i){ r.setAttribute('stroke-width', i===st.yt.mark?3:1); r.style.stroke= i===st.yt.mark?'var(--red)':'var(--rule)'; });
+    if(st.yt.mark!=null){ var y=top+st.yt.mark*CH+CH/2-1; sv('path',{d:'M86 '+(y-7)+' l14 14 M100 '+(y-7)+' l-14 14',style:'stroke:var(--red)','stroke-width':3},mk); msg.textContent='Cache marked on the claim registered '+CLAIMS[st.yt.mark]+'.'; }
+  }
+  draw();
+};
+
+/* ===================== NWT ===================== */
+var NN={T:{n:'Tibbitt Lake',x:50,y:280,a:'start'},P:{n:'Prosperous Lake',x:160,y:240},G:{n:'Gordon Lake',x:110,y:140},L:{n:'Lockhart Camp',x:250,y:115},K:{n:'Mackay Camp',x:270,y:235},D:{n:'Dome Portage',x:370,y:185},X:{n:'Ptarmigan Mine',x:405,y:55}};
+var NE=[['A','T','P',9,60],['B','T','G',14,40],['C','P','G',6,55],['D','P','K',12,35],['E','G','L',8,60],['F','L','K',7,45],['G','K','D',5,30],['H','L','D',11,50],['J','D','X',10,30],['K','K','X',16,18],['L','L','X',13,18]];
+var DROP={L:['fuel',20],K:['cement',15],X:['explosives',8]};
+PUZ.nwt=function(area){
+  var st=S(); function fresh(){ return {at:'T',cargo:{L:1,K:1,X:1},used:[],log:[]}; }
+  st.nwt=st.nwt||fresh();
+  var g=h('div',{class:'grid2'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Tibbitt to Contwoyto winter road · click a stretch to drive it'));
+  var s=sv('svg',{viewBox:'0 0 460 310',class:'svgbox',role:'img','aria-label':'Ice road map with seven stops and eleven stretches'});
+  sv('rect',{x:0,y:0,width:460,height:310,fill:'#e8f0f4',rx:6},s);
+  var EL={};
+  NE.forEach(function(e){
+    var A=NN[e[1]],B=NN[e[2]];
+    var ln=sv('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'#7d9aaa','stroke-width':3},s);
+    var hit=sv('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'transparent','stroke-width':18,style:'cursor:pointer',tabindex:'0',role:'button','aria-label':'Stretch '+e[0]+', '+NN[e[1]].n+' to '+NN[e[2]].n+', '+e[3]+' km, limit '+e[4]+' tonnes'},s);
+    var mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+    sv('rect',{x:mx-30,y:my-9,width:60,height:17,rx:3,fill:'#fff',stroke:'#7d9aaa'},s);
+    var t=sv('text',{x:mx,y:my+3,'text-anchor':'middle','font-size':9.5,fill:'#1c2520'},s); t.textContent=e[0]+' · '+e[3]+'km · '+e[4]+'t';
+    EL[e[0]]=ln;
+    function act(){ drive(e); }
+    hit.addEventListener('click',act); hit.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); act(); } });
+  });
+  Object.keys(NN).forEach(function(k){ var n=NN[k]; sv('circle',{cx:n.x,cy:n.y,r:8,fill:DROP[k]?'#b31f2d':'#1c2520',stroke:'#fff','stroke-width':2},s);
+    var t=sv('text',{x:n.x,y:n.y+(n.y>200?22:-14),'text-anchor':'middle','font-size':10,'font-weight':600,fill:'#1c2520'},s); t.textContent=n.n; });
+  var truck=sv('rect',{width:18,height:11,rx:2,fill:'#e7b43a',stroke:'#1c2520','stroke-width':1.5},s);
+  c1.appendChild(s);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); c1.appendChild(msg);
+  var rs=h('button',{class:'btn',type:'button',style:'margin-top:6px'},'Back to Tibbitt Lake, fully loaded'); c1.appendChild(rs);
+  g.appendChild(c1);
+  var c2=h('div',{class:'stack'});
+  var man=h('div',{class:'card'}); man.appendChild(h('h4',null,'Manifest'));
+  var mt=h('div'); man.appendChild(mt); c2.appendChild(man);
+  var rl=h('div',{class:'card'}); rl.appendChild(h('h4',null,'Driver\'s log'));
+  var lt=h('div',{style:'font-size:15px'}); rl.appendChild(lt); c2.appendChild(rl);
+  c2.appendChild(h('p',{class:'note',style:'margin:0'},'Rules of the road: each stretch carries one loaded pass, so never drive the same stretch twice. Never cross a stretch heavier than its limit. Drop each load where it\'s going.'));
+  g.appendChild(c2);
+  function weight(){ var w=12; for(var k in st.nwt.cargo) w+=DROP[k][1]; return w; }
+  function draw(){
+    var n=NN[st.nwt.at]; truck.setAttribute('x',n.x-9); truck.setAttribute('y',n.y-26);
+    NE.forEach(function(e){ var u=st.nwt.used.indexOf(e[0])>=0; EL[e[0]].style.stroke=u?'var(--red)':''; EL[e[0]].setAttribute('stroke-width',u?5:3); });
+    mt.innerHTML='<div class="mono" style="font-size:15px">Truck weight now: <b>'+weight()+' t</b></div><div style="font-size:15px;margin-top:6px">Tractor 12 t'+
+      Object.keys(DROP).map(function(k){ var on=st.nwt.cargo[k]; return '<br>'+(on?'':'<s>')+esc(DROP[k][0])+' '+DROP[k][1]+' t for '+esc(NN[k].n)+(on?'':'</s> · delivered'); }).join('')+'</div>';
+    lt.innerHTML= st.nwt.log.length? st.nwt.log.map(function(l){return esc(l);}).join('<br>') : 'Parked at Tibbitt Lake, the south end of the road.';
+  }
+  function drive(e){
+    var at=st.nwt.at; if(e[1]!==at && e[2]!==at){ msg.className='msg bad'; msg.textContent='The truck is at '+NN[at].n+'. Stretch '+e[0]+' doesn\'t start there.'; return; }
+    if(st.nwt.used.indexOf(e[0])>=0){ msg.className='msg bad'; msg.textContent='Stretch '+e[0]+' has already carried its loaded pass today.'; return; }
+    var w=weight();
+    if(w>e[4]){ msg.className='msg bad'; msg.textContent='The ice on stretch '+e[0]+' cracked under '+w+' t. Its limit is '+e[4]+' t. The truck is through the ice; start again.'; st.nwt=fresh(); L.save(); draw(); return; }
+    var to=e[1]===at?e[2]:e[1];
+    st.nwt.used.push(e[0]); st.nwt.at=to;
+    var line='Stretch '+e[0]+': '+NN[at].n+' to '+NN[to].n+', '+e[3]+' km.';
+    if(DROP[to] && st.nwt.cargo[to]){ delete st.nwt.cargo[to]; line+=' Dropped the '+DROP[to][0]+'.'; }
+    st.nwt.log.push(line); L.save();
+    if(to==='X'){ var left=Object.keys(st.nwt.cargo); if(!left.length){ msg.className='msg good'; msg.textContent='Everything delivered and nothing through the ice. Add up the kilometres in the log.'; } else { msg.className='msg bad'; msg.textContent='At the mine, but the '+left.map(function(k){return DROP[k][0];}).join(' and ')+' never got delivered.'; } }
+    else { msg.className='msg'; msg.textContent=''; }
+    draw();
+  }
+  rs.addEventListener('click',function(){ st.nwt=fresh(); L.save(); msg.textContent=''; draw(); });
+  draw();
+};
+
+/* ===================== NUNAVUT ===================== */
+var DIRS=[[-1,0,'N'],[-1,1,'NE'],[0,1,'E'],[1,1,'SE'],[1,0,'S'],[1,-1,'SW'],[0,-1,'W'],[-1,-1,'NW']];
+var MARKS=[{k:'two',n:'Two Hills',r:2,c:7},{k:'look',n:'Lookout Rock',r:1,c:4},{k:'river',n:'River mouth',r:5,c:1},{k:'three',n:'Three Hills',r:1,c:1},{k:'falls',n:'Frozen falls',r:1,c:9},{k:'lake',n:'Long Lake',r:9,c:8}];
+var FIGS={A:{r:8,c:1},B:{r:9,c:4},C:{r:5,c:9}};
+function markIcon(k,x,y,sc){
+  sc=sc||1; var o='';
+  if(k==='two') o='<path d="M'+(x-14*sc)+' '+(y+6*sc)+' Q'+(x-7*sc)+' '+(y-10*sc)+' '+x+' '+(y+6*sc)+' Q'+(x+7*sc)+' '+(y-10*sc)+' '+(x+14*sc)+' '+(y+6*sc)+'Z" fill="#7d8a72"/>';
+  if(k==='three') o='<path d="M'+(x-15*sc)+' '+(y+6*sc)+' Q'+(x-10*sc)+' '+(y-7*sc)+' '+(x-5*sc)+' '+(y+6*sc)+' Q'+x+' '+(y-7*sc)+' '+(x+5*sc)+' '+(y+6*sc)+' Q'+(x+10*sc)+' '+(y-7*sc)+' '+(x+15*sc)+' '+(y+6*sc)+'Z" fill="#7d8a72"/>';
+  if(k==='look') o='<path d="M'+(x-4*sc)+' '+(y+7*sc)+' L'+(x-3*sc)+' '+(y-12*sc)+' L'+(x+3*sc)+' '+(y-12*sc)+' L'+(x+5*sc)+' '+(y+7*sc)+'Z" fill="#5d6268"/>';
+  if(k==='river') o='<path d="M'+(x-14*sc)+' '+(y+6*sc)+' L'+(x-3*sc)+' '+(y-2*sc)+' L'+(x-6*sc)+' '+(y-10*sc)+' L'+(x+6*sc)+' '+(y-10*sc)+' L'+(x+3*sc)+' '+(y-2*sc)+' L'+(x+14*sc)+' '+(y+6*sc)+'Z" fill="#5d97b3"/>';
+  if(k==='falls') o='<path d="M'+(x-8*sc)+' '+(y-10*sc)+' V'+(y+6*sc)+' M'+x+' '+(y-10*sc)+' V'+(y+6*sc)+' M'+(x+8*sc)+' '+(y-10*sc)+' V'+(y+6*sc)+'" stroke="#9cc3d6" stroke-width="'+(2.5*sc)+'"/>';
+  if(k==='lake') o='<ellipse cx="'+x+'" cy="'+y+'" rx="'+(14*sc)+'" ry="'+(5*sc)+'" fill="#5d97b3"/>';
+  return o;
+}
+function inuk(x,y,dirDeg,sc){
+  sc=sc||1;
+  return '<g transform="translate('+x+' '+y+') scale('+sc+')"><rect x="-5" y="2" width="4" height="8" fill="#3d4247"/><rect x="1" y="2" width="4" height="8" fill="#3d4247"/><rect x="-6" y="-3" width="12" height="5" fill="#4b5157"/>'+
+    '<g transform="rotate('+dirDeg+')"><rect x="-6" y="-6" width="20" height="3.4" fill="#2b2f33"/></g><rect x="-3" y="-11" width="6" height="5" fill="#4b5157"/></g>';
+}
+PUZ.nu=function(area){
+  var st=S(); st.nu=st.nu||{d:{A:4,B:2,C:0}};
+  var ph=h('div',{class:'grid2',style:'grid-template-columns:repeat(auto-fit,minmax(180px,1fr))'});
+  [['A','two'],['B','look'],['C','river']].forEach(function(p){
+    var svg='<svg viewBox="0 0 200 100" class="svgbox" role="img" aria-label="Photograph at figure '+p[0]+'"><rect width="200" height="100" fill="#dfe8ee"/><rect y="70" width="200" height="30" fill="#eef2f3"/>'+
+      markIcon(p[1],160,62,1.3)+inuk(60,62,0,2.3)+'</svg>';
+    ph.appendChild(h('div',{class:'card',style:'padding:10px'},'<h4 style="margin-bottom:6px">Photograph · at figure '+p[0]+'</h4>'+svg+'<p style="font-size:13px;color:var(--muted);margin:6px 0 0">The long arm points at what\'s on the horizon behind it.</p>'));
+  });
+  area.appendChild(ph);
+  var g=h('div',{class:'grid2',style:'margin-top:20px'}); area.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Map card · grid reference is row, then column'));
+  var CS=34, OX=26, OY=24;
+  var s=sv('svg',{viewBox:'0 0 '+(OX+9*CS+6)+' '+(OY+9*CS+8),class:'svgbox',style:'max-width:420px',role:'img','aria-label':'Nine by nine map grid with landmarks and three stone figures'});
+  c1.appendChild(s);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); c1.appendChild(msg);
+  g.appendChild(c1);
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Turn the figures'));
+  var ctr=h('div',{style:'display:grid;gap:10px'}); c2.appendChild(ctr);
+  c2.appendChild(h('p',{style:'font-size:14.5px;color:var(--muted);margin:12px 0 0'},'The red line runs along each figure\'s long arm, out to the edge of the map.'));
+  g.appendChild(c2);
+  function ray(f){ var d=DIRS[st.nu.d[f]], r=FIGS[f].r, c=FIGS[f].c, out=[]; while(true){ r+=d[0]; c+=d[1]; if(r<1||r>9||c<1||c>9) break; out.push(r+','+c); } return out; }
+  function draw(){
+    var o='<rect x="'+OX+'" y="'+OY+'" width="'+(9*CS)+'" height="'+(9*CS)+'" fill="#eef2f3"/>';
+    for(var i=0;i<=9;i++){ o+='<line x1="'+OX+'" y1="'+(OY+i*CS)+'" x2="'+(OX+9*CS)+'" y2="'+(OY+i*CS)+'" stroke="#c7d3d9"/><line x1="'+(OX+i*CS)+'" y1="'+OY+'" x2="'+(OX+i*CS)+'" y2="'+(OY+9*CS)+'" stroke="#c7d3d9"/>'; }
+    for(i=1;i<=9;i++){ o+='<text x="'+(OX+(i-.5)*CS)+'" y="'+(OY-8)+'" text-anchor="middle" font-size="10" style="fill:var(--muted)">'+i+'</text><text x="'+(OX-10)+'" y="'+(OY+(i-.5)*CS+4)+'" text-anchor="middle" font-size="10" style="fill:var(--muted)">'+i+'</text>'; }
+    var rays={A:ray('A'),B:ray('B'),C:ray('C')};
+    var hit=rays.A.filter(function(k){ return rays.B.indexOf(k)>=0 && rays.C.indexOf(k)>=0; });
+    hit.forEach(function(k){ var p=k.split(',').map(Number); o+='<rect x="'+(OX+(p[1]-1)*CS)+'" y="'+(OY+(p[0]-1)*CS)+'" width="'+CS+'" height="'+CS+'" fill="#e7b43a" opacity=".7"/>'; });
+    MARKS.forEach(function(m){ var x=OX+(m.c-.5)*CS, y=OY+(m.r-.5)*CS; o+=markIcon(m.k,x,y+2,.8)+'<text x="'+x+'" y="'+(y+15)+'" text-anchor="middle" font-size="6.5" fill="#33434b">'+esc(m.n)+'</text>'; });
+    Object.keys(FIGS).forEach(function(f){
+      var F=FIGS[f], d=DIRS[st.nu.d[f]], x=OX+(F.c-.5)*CS, y=OY+(F.r-.5)*CS, rr=rays[f];
+      if(rr.length){ var last=rr[rr.length-1].split(',').map(Number); o+='<line x1="'+x+'" y1="'+y+'" x2="'+(OX+(last[1]-.5)*CS+d[1]*CS*.5)+'" y2="'+(OY+(last[0]-.5)*CS+d[0]*CS*.5)+'" style="stroke:var(--red)" stroke-width="2" stroke-dasharray="5 3"/>'; }
+      var deg=Math.atan2(d[0],d[1])*180/Math.PI;
+      o+=inuk(x,y+2,deg,1.1)+'<text x="'+(x-11)+'" y="'+(y-9)+'" font-size="10" font-weight="700" fill="#1c2520">'+f+'</text>';
+    });
+    s.innerHTML=o;
+    msg.className='msg'+(hit.length?' good':''); msg.textContent= hit.length ? 'All three sightlines cross at row '+hit[0].split(',')[0]+', column '+hit[0].split(',')[1]+'.' : '';
+    ctr.innerHTML='';
+    Object.keys(FIGS).forEach(function(f){
+      var row=h('div',{class:'row'});
+      row.appendChild(h('span',{style:'font-family:var(--f-display);font-weight:700;width:5.5em'},'Figure '+f));
+      var l=h('button',{class:'btn',type:'button','aria-label':'Turn figure '+f+' anticlockwise'},'⟲'), r=h('button',{class:'btn',type:'button','aria-label':'Turn figure '+f+' clockwise'},'⟳');
+      l.addEventListener('click',function(){ st.nu.d[f]=(st.nu.d[f]+7)%8; L.save(); draw(); });
+      r.addEventListener('click',function(){ st.nu.d[f]=(st.nu.d[f]+1)%8; L.save(); draw(); });
+      row.appendChild(l); row.appendChild(r); row.appendChild(h('span',{class:'mono',style:'font-size:13px'},'long arm points '+DIRS[st.nu.d[f]][2]));
+      ctr.appendChild(row);
+    });
+  }
+  draw();
+};
+
+/* ===================== META 1 · ITINERARY ===================== */
+PUZ.meta1=function(st0){
+  var st=S(), P=L.P;
+  var ph=h('div',{class:'ph'}); ph.innerHTML='<div><div class="where">The flap · meta puzzle one</div><h2>The itinerary</h2></div>'; st0.appendChild(ph);
+  st0.appendChild(h('p',{class:'souv'},'A <b>dry-erase itinerary card</b> stitched inside the flap, with thirteen blank lines. Put her stamps in the order she travelled and read what the letters say.'));
+  var solved=P.filter(function(p){return st.solved[p.id];}).map(function(p){return p.id;});
+  st.order=(st.order||[]).filter(function(id){return st.solved[id];});
+  solved.forEach(function(id){ if(st.order.indexOf(id)<0) st.order.push(id); });
+  L.save();
+  var g=h('div',{class:'grid2'}); st0.appendChild(g);
+  var c1=h('div',{class:'card'}); c1.appendChild(h('h4',null,'Stamps · '+solved.length+' of 13'));
+  if(!solved.length){ c1.appendChild(h('p',{style:'margin:0'},'No stamps yet. Every souvenir you solve adds its stamp here.')); }
+  else {
+    var items={}; P.forEach(function(p){ items[p.id]={edge:p.letter,p:p}; });
+    var readout=h('div',{class:'mono',style:'font-size:22px;letter-spacing:.25em;margin-top:12px;word-break:break-all','aria-live':'polite'});
+    var list=(function(){
+      var ol=h('ol',{class:'sort'});
+      function draw(){
+        ol.innerHTML='';
+        st.order.forEach(function(id,i){
+          var p=L.BYID[id]; var li=h('li');
+          var mv=h('div',{class:'mv'});
+          var up=h('button',{type:'button','aria-label':'Move '+p.name+' up'},'▲'); up.disabled=i===0;
+          var dn=h('button',{type:'button','aria-label':'Move '+p.name+' down'},'▼'); dn.disabled=i===st.order.length-1;
+          up.addEventListener('click',function(){ var t=st.order[i-1]; st.order[i-1]=id; st.order[i]=t; L.save(); draw(); });
+          dn.addEventListener('click',function(){ var t=st.order[i+1]; st.order[i+1]=id; st.order[i]=t; L.save(); draw(); });
+          mv.appendChild(up); mv.appendChild(dn); li.appendChild(mv);
+          li.appendChild(h('div',{style:'min-width:0'},'<span class="mono" style="font-size:13px">DAY '+p.day+'</span> · '+esc(p.name)));
+          li.appendChild(h('div',{class:'edge'},p.letter));
+          ol.appendChild(li);
+        });
+        readout.textContent=st.order.map(function(id){return L.BYID[id].letter;}).join('');
+      }
+      draw(); return ol;
+    })();
+    c1.appendChild(list); c1.appendChild(readout);
+  }
+  g.appendChild(c1);
+  var c2=h('div',{class:'card'}); c2.appendChild(h('h4',null,'Write what it says'));
+  var f=h('form',{class:'row'});
+  var inp=h('input',{id:'meta1-in',autocomplete:'off','aria-label':'The itinerary phrase',style:'flex:1 1 220px;min-width:0;font-family:var(--f-mono);font-size:18px;padding:6px 10px;border:1px solid var(--ink);border-radius:6px;background:var(--paper);text-transform:uppercase'});
+  f.appendChild(inp); f.appendChild(h('button',{class:'btn primary',type:'submit'},'Write it on the card'));
+  c2.appendChild(f);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); c2.appendChild(msg);
+  if(st.meta1){ msg.className='msg good'; msg.textContent='THE GAPS ARE KEY. Open "Where she lingered".'; inp.value='THE GAPS ARE KEY'; }
+  f.addEventListener('submit',function(e){ e.preventDefault();
+    var v=(inp.value||'').toUpperCase().replace(/[^A-Z]/g,'');
+    if(v==='THEGAPSAREKEY'){ st.meta1=true; L.save(); L.refreshChrome(); msg.className='msg good'; msg.textContent='THE GAPS ARE KEY. Open "Where she lingered".'; }
+    else { msg.className='msg bad'; msg.textContent= solved.length<13 ? 'Not yet. You have '+solved.length+' of 13 stamps; the phrase needs all of them.' : 'That isn\'t what the card says. Check that the days run in order.'; }
+  });
+  g.appendChild(c2);
+  st0.appendChild(L.belowBlock('meta1', L.META.meta1.j, L.META.meta1.h2, L.META.meta1.h3, false));
+};
+
+/* ===================== META 2 · PATCHES + LOCK + INNER POCKET ===================== */
+var MOT={
+ cod:'<path d="M2 10 Q8 4 14 10 Q8 16 2 10Z M13 10 L19 6 L19 14Z" fill="currentColor"/>',
+ anchor:'<path d="M10 4 V17 M5 12 Q10 20 15 12 M7 7 H13" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="10" cy="3" r="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/>',
+ potato:'<ellipse cx="10" cy="10" rx="7" ry="5" fill="currentColor"/>',
+ light:'<path d="M8 18 L9 7 H11 L12 18Z M8 7 H12 L11 3 H9Z" fill="currentColor"/>',
+ fleur:'<path d="M10 2 C7 6 7 9 10 12 C13 9 13 6 10 2Z M10 12 C6 8 2 9 3 13 C5 12 7 12 9 13Z M10 12 C14 8 18 9 17 13 C15 12 13 12 11 13Z M6 13 H14 V15 H6Z M9 15 H11 V19 H9Z" fill="currentColor"/>',
+ trillium:'<ellipse cx="10" cy="5.5" rx="3" ry="5" fill="currentColor"/><ellipse cx="6" cy="13" rx="3" ry="5" transform="rotate(-60 6 13)" fill="currentColor"/><ellipse cx="14" cy="13" rx="3" ry="5" transform="rotate(60 14 13)" fill="currentColor"/>',
+ bison:'<path d="M3 14 Q3 7 9 7 Q12 4 15 7 Q18 8 17 12 L17 16 H15 V13 H7 V16 H5 V13Z" fill="currentColor"/>',
+ wheat:'<path d="M10 19 V5" stroke="currentColor" stroke-width="1.4"/><ellipse cx="8" cy="7" rx="1.6" ry="2.6" fill="currentColor"/><ellipse cx="12" cy="7" rx="1.6" ry="2.6" fill="currentColor"/><ellipse cx="8" cy="11" rx="1.6" ry="2.6" fill="currentColor"/><ellipse cx="12" cy="11" rx="1.6" ry="2.6" fill="currentColor"/><ellipse cx="10" cy="3.5" rx="1.4" ry="2.4" fill="currentColor"/>',
+ rose:'<circle cx="10" cy="10" r="3" fill="currentColor"/><circle cx="10" cy="4.5" r="3" fill="currentColor" opacity=".75"/><circle cx="15.2" cy="8.3" r="3" fill="currentColor" opacity=".75"/><circle cx="13.2" cy="14.5" r="3" fill="currentColor" opacity=".75"/><circle cx="6.8" cy="14.5" r="3" fill="currentColor" opacity=".75"/><circle cx="4.8" cy="8.3" r="3" fill="currentColor" opacity=".75"/>',
+ dogwood:'<ellipse cx="10" cy="5" rx="3" ry="4" fill="currentColor"/><ellipse cx="10" cy="15" rx="3" ry="4" fill="currentColor"/><ellipse cx="5" cy="10" rx="4" ry="3" fill="currentColor"/><ellipse cx="15" cy="10" rx="4" ry="3" fill="currentColor"/>',
+ spruce:'<path d="M10 2 L15 9 H12 L16 14 H11 V18 H9 V14 H4 L8 9 H5Z" fill="currentColor"/>',
+ diamond:'<path d="M10 3 L16 9 L10 17 L4 9Z" fill="currentColor"/>',
+ star:'<path d="M10 2 L12.4 7.6 L18.5 8.2 L13.9 12.2 L15.3 18.2 L10 15 L4.7 18.2 L6.1 12.2 L1.5 8.2 L7.6 7.6Z" fill="currentColor"/>'
+};
+var PATCHES=[['bc','dogwood',4,'#2f5c6e','#f4e7c6','shield'],['nl','cod',6,'#22423f','#e8d6a0','circle'],['sk','wheat',8,'#2f6b3a','#e7c35a','rect'],['qc','fleur',4,'#1f4e7a','#f4f1e8','shield'],
+ ['nu','star',1,'#1c2b3d','#e7b43a','circle'],['pei','potato',5,'#9e3a22','#f4e2c4','rect'],['yt','spruce',7,'#2b3d2a','#c9d9a8','shield'],['on','trillium',3,'#3b2a5a','#f4f1e8','circle'],
+ ['ns','anchor',3,'#1f3c66','#f2d06b','rect'],['ab','rose',5,'#6a2335','#f2b7c4','shield'],['nwt','diamond',3,'#203a4a','#cde4ee','circle'],['nb','light',2,'#5a2a1f','#f2d06b','rect'],['mb','bison',2,'#5b4a2a','#e8d6a0','shield']];
+function patchSVG(pt){
+  var bg=pt[3], fg=pt[4], shape=pt[5], n=pt[2], o='<svg viewBox="0 0 100 100" role="img" aria-label="'+esc(L.BYID[pt[0]].name)+' patch">';
+  var stitch=pt[0]==='nu'?'#e2603a':'#efe6cf';
+  var sh= shape==='circle' ? '<circle cx="50" cy="50" r="44" fill="'+bg+'"/><circle cx="50" cy="50" r="40" fill="none" stroke="'+stitch+'" stroke-width="2" stroke-dasharray="4 3"/>'
+        : shape==='shield' ? '<path d="M10 10 H90 V52 Q90 82 50 94 Q10 82 10 52Z" fill="'+bg+'"/><path d="M15 15 H85 V52 Q85 77 50 88 Q15 77 15 52Z" fill="none" stroke="'+stitch+'" stroke-width="2" stroke-dasharray="4 3"/>'
+        : '<rect x="8" y="16" width="84" height="68" rx="6" fill="'+bg+'"/><rect x="13" y="21" width="74" height="58" rx="4" fill="none" stroke="'+stitch+'" stroke-width="2" stroke-dasharray="4 3"/>';
+  o+=sh;
+  var cols=n<=2?n:(n<=4?2:(n<=6?3:4)), rows=Math.ceil(n/cols), sz=n>6?15:17;
+  for(var i=0;i<n;i++){ var r=Math.floor(i/cols), c=i%cols, inRow=Math.min(cols,n-r*cols);
+    var x=50-(inRow*sz)/2+c*sz, y=48-(rows*sz)/2+r*sz;
+    o+='<g transform="translate('+x+' '+y+') scale('+(sz/20)+')" style="color:'+fg+'">'+MOT[pt[1]]+'</g>'; }
+  return o+'</svg>';
+}
+PUZ.meta2=function(st0){
+  var st=S();
+  var ph=h('div',{class:'ph'}); ph.innerHTML='<div><div class="where">The flap · meta puzzle two</div><h2>Where she lingered</h2></div>'; st0.appendChild(ph);
+  st0.appendChild(h('p',{class:'souv'},'<b>Thirteen patches</b> sewn on the flap, one for every place she slept, and a three-digit lock on the inside pocket.'+(st.meta1?'':' <i>The itinerary card on the flap says something about this. Solve it first if you can.</i>')));
+  var pt=h('div',{class:'patches'});
+  PATCHES.forEach(function(p){ pt.appendChild(h('div',{class:'patch'},patchSVG(p)+esc(L.BYID[p[0]].short))); });
+  st0.appendChild(pt);
+  var g=h('div',{class:'grid2',style:'margin-top:20px'}); st0.appendChild(g);
+  var lc=h('div',{class:'card'}); lc.appendChild(h('h4',null,'The inside pocket · three-digit lock'));
+  st.lockv=st.lockv||[0,0,0];
+  var lock=h('div',{class:'lock'}); lc.appendChild(lock);
+  var msg=h('div',{class:'msg','aria-live':'polite'}); lc.appendChild(msg);
+  function drawLock(){
+    lock.innerHTML='';
+    st.lockv.forEach(function(v,i){
+      var w=h('div',{class:'wheel'});
+      var up=h('button',{type:'button','aria-label':'Wheel '+(i+1)+' up'},'▲'), dn=h('button',{type:'button','aria-label':'Wheel '+(i+1)+' down'},'▼');
+      up.addEventListener('click',function(){ st.lockv[i]=(st.lockv[i]+1)%10; L.save(); drawLock(); });
+      dn.addEventListener('click',function(){ st.lockv[i]=(st.lockv[i]+9)%10; L.save(); drawLock(); });
+      w.appendChild(up); w.appendChild(h('span',{'aria-label':'Wheel '+(i+1)+' shows '+v},String(v))); w.appendChild(dn);
+      lock.appendChild(w);
+    });
+    var pull=h('button',{class:'btn primary',type:'button',style:'margin-left:8px'},st.lock?'Open':'Pull the shackle');
+    pull.addEventListener('click',function(){
+      if(st.lockv.join('')==='647'){ st.lock=true; L.save(); L.refreshChrome(); L.render(); }
+      else { msg.className='msg bad'; msg.textContent='The shackle doesn\'t move.'; }
+    });
+    lock.appendChild(pull);
+  }
+  drawLock();
+  g.appendChild(lc);
+  g.appendChild(L.belowBlock('meta2', L.META.meta2.j, L.META.meta2.h2, L.META.meta2.h3, false));
+  if(st.lock) inner(st0, st);
+};
+function inner(st0, st){
+  var wrap=h('section',{style:'margin-top:34px;border-top:2px solid var(--ink);padding-top:22px'});
+  wrap.appendChild(h('div',{class:'where',style:'font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--canvas)'},'The inner pocket · open'));
+  wrap.appendChild(h('h2',{style:'font-size:32px;margin:4px 0 14px'},'A cod, a certificate and a letter'));
+  var g=h('div',{class:'grid2'}); wrap.appendChild(g);
+  var cert=h('div',{class:'cert'});
+  cert.innerHTML='<svg viewBox="0 0 220 80" width="200" style="max-width:100%" role="img" aria-label="Rubber cod keychain"><circle cx="20" cy="40" r="10" fill="none" stroke="#9aa0a4" stroke-width="3"/><path d="M30 40 L44 40" stroke="#9aa0a4" stroke-width="3"/>'+
+    '<path d="M44 40 Q100 4 168 40 Q100 76 44 40Z" fill="#b9a46a" stroke="#3d3420" stroke-width="3"/><path d="M166 40 L206 16 L198 40 L206 64Z" fill="#b9a46a" stroke="#3d3420" stroke-width="3"/><circle cx="66" cy="36" r="4" fill="#1c2520"/></svg>'+
+    '<div class="lbl" style="margin-top:6px">Royal Order of Screechers</div><h3>Certificate of Screech-In</h3>';
+  var nm=h('input',{id:'sc-name',placeholder:'Your name','aria-label':'Name for the certificate',autocomplete:'off'});
+  if(st.scname) nm.value=st.scname;
+  nm.addEventListener('input',function(){ st.scname=nm.value; L.save(); });
+  cert.appendChild(nm);
+  var stage=h('div',{style:'margin-top:14px;text-align:left'}); cert.appendChild(stage);
+  g.appendChild(cert);
+  var lt=h('div'); g.appendChild(lt);
+  function step(){
+    stage.innerHTML='';
+    if(st.sc){
+      stage.innerHTML='<p style="text-align:center;margin:0;font-size:16px">Duly kissed the cod and answered true. <b>'+esc(st.scname||'This traveller')+'</b> is hereby an honorary Newfoundlander.</p>';
+      lt.innerHTML='<div class="finalletter"><p>Last night of the trip. I\'m locking this pocket so I can\'t read it again and fix it.</p>'+
+        '<p>Three places held me longer than the ticket said.</p>'+
+        '<p>Come By Chance, because Mrs. Pardy needed a clerk and I needed to find out I could be useful somewhere nobody knew me. Nine days of other people\'s mail. I read every word. Don\'t tell.</p>'+
+        '<p>Quebec City, because I got lost the first night and an old woman tied her sash around this bag so I\'d look like I belonged. I stayed five days to give it back and she wouldn\'t take it.</p>'+
+        '<p>Dawson, because the sun wouldn\'t set and I couldn\'t make myself sleep while it was still up. Four days of the longest light I\'ve ever seen.</p>'+
+        '<p>Everywhere else I stayed a night and kept moving. I think I was afraid that if I stopped I\'d go home.</p>'+
+        '<p>If you\'re reading this, the bag got further than I did. Take it somewhere. Sleep more than a night wherever someone is kind to you. Sew on a patch.</p>'+
+        '<p style="margin-bottom:0">Get further than I did.</p></div>';
+      return;
+    }
+    lt.innerHTML='<div class="card"><h4>A sealed envelope</h4><p class="note" style="margin:0">Read it after you\'re screeched in.</p></div>';
+    var kiss=h('button',{class:'btn primary',type:'button'},'Kiss the cod');
+    stage.appendChild(h('p',{style:'margin:0 0 8px;font-size:15px'},'The certificate\'s instructions: kiss the cod, then answer the question the way the Dictionary taught you.'));
+    stage.appendChild(kiss);
+    kiss.addEventListener('click',function(){
+      stage.innerHTML='<p style="margin:0 0 4px;font-family:var(--f-display);font-weight:600;font-size:19px">"Is ye a Newfoundlander?"</p>';
+      var res=h('div',{class:'msg','aria-live':'polite'});
+      ["Yes b'y, this is it.","Indeed I is, me ol' cock, and long may yer big jib draw.","Whadda y'at, me ol' trout?"].forEach(function(t,i){
+        var b=h('button',{class:'choice',type:'button'},esc(t));
+        b.addEventListener('click',function(){ if(i===1){ st.sc=true; L.save(); step(); } else { res.className='msg bad'; res.textContent='The officiant shakes his head. Check the Dictionary from the lid pocket.'; } });
+        stage.appendChild(b);
+      });
+      stage.appendChild(res);
+    });
+  }
+  step();
+  st0.appendChild(wrap);
+}
+
+L.boot();
+})();
+</script>
+</body></html>
