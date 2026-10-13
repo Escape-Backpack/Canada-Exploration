@@ -1,6 +1,36 @@
 # Handoff
 
+## 2026-10-05: documentation closeout (Codex)
+- **Status:** Requested document synchronization completed; chat ready to archive. Current AS-003/004 and PP-001 remain the design source of truth. The sibling EscapeBackpack/index.html now links Canada v2 and its corrected-leaf comparison. Superseded AS-001 points to preserved README_v1.md.
+- **Checks:** Document links and active records checked; root index and both Aurora guide sections reviewed over local HTTP; all 29 new section links/images return 200; images load, identity appears in print content, and no browser console warnings/errors. Earlier digital geometry checks still apply; no physical print or actual printer-profile slice.
+- **Next:** Print the thin back trial with the intended printer/material and inspect S/B/K, then test the full medallion. No commit, push or publication.
+
+
+## 2026-10-05: maple leaf corrected in medallion v2 (Codex)
+- **Requested:** Designer said the first maple leaf looked wrong.
+- **Changed:** Replaced it with the existing maple-leaf SVG outline; train, tracks and rim retained exactly. New AS-003 model and AS-004 preview supersede AS-001/002. PP-001 references current model.
+- **Files:** v2 one-piece STL, thin trial, SVGs/preview, measured reports, sources, notes and ZIP under assets/medallion. v1 outputs and README preserved.
+- **Checks:** Both v2 meshes pass closure, winding, connectivity, non-degenerate facets and volume; back matches approved Space SVG. CAD reports zero profile change outside the leaf region. Preview reviewed; ZIP integrity and record validation pass. No actual printer-profile slice or physical print.
+- **Next:** Print thin back trial with intended printer/material, then the full two-colour medallion. No commit, push or publication.
+
+
+## 2026-10-05: themed medallion built (Codex)
+- **Worked on:** PP-001, AS-001 and AS-002, after the designer requested medallions for Aurora, Hockey and Canada and selected the proposed motifs.
+- **Selected:** maple leaf and train, navy/yellow, with the improved shared back. The physical prop is not marked built/tested; final release/container remain unassigned.
+- **Created:** Full one-piece STL, matching 1.2 mm back trial, exact SVG profiles/PNG preview, reports, self-contained sources, README and ZIP under `assets/medallion/`.
+- **Method:** Vector CAD for maple leaf and train; no ImageGen used.
+- **Checks:** Both meshes pass closure, winding, one-solid connectivity, non-degenerate facets and volume checks; preview screen-reviewed; shared back SVG matches Space exactly; ZIP integrity and record validation pass. No printer-profile slice or physical test.
+- **Next step:** Print the full-size thin back trial using the actual printer/material and inspect S/B/K, then test the full two-colour medallion.
+
+
 Update at the end of every session. Newest entry on top. Refer to records by ID.
+
+## 2026-10-03: NT and NU reveal puzzles
+- **Worked on:** the two territory puzzles that use a reveal prop.
+- **Ideas recorded (status idea, nothing decided):** PZ-001 (NT: red acetate reveals a puzzle, rebus/icons, needs a second prop to decode; aurora clue), PZ-002 (NU: UV pen reveals the code jumbled, a second prop reorders it; long winter + "special lights" clue). Both set to a 4-digit lock.
+- **Open, not yet recorded as questions:** the second prop for each; where the UV pen and light are found; the exact clue wording so players try the tool; test the paper under UV.
+- **Not committed.**
+- **Next step:** pick the second prop for PZ-001 or PZ-002.
 
 ## 2026-10-03: external mockup added
 - **Worked on:** added `the-long-way-home.html`, a playable browser mockup made with another AI model.
