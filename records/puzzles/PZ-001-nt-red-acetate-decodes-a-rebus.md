@@ -14,10 +14,8 @@ needs: []
 mechanic: other
 # 1 (easy) to 3 (hard)
 difficulty:
-# Lock it opens: 3-digit | 4-digit | 4-letter | 3-digit-colour (blank if none)
-lock: 4-digit
 answer:
-# What players call this lock on the hint page, e.g. "The luggage tag" (spoiler-free)
+# What players call this puzzle on the hint page, e.g. "The luggage tag" (spoiler-free)
 hint_title:
 # Explicit opt-in for the PUBLIC hint page. Candidates are never published.
 publish_hints: no
@@ -62,3 +60,7 @@ Idea only, nothing decided (brainstorm 2026-10-03).
 <!-- Add dated observations only after a test: version/files tested, physical or
 digital, what the player tried, where they stalled, hints used, interpretation,
 change made and retest result. After a relevant edit, mark untested again. -->
+
+## Lock-version notes
+Values from the lock-based version, kept when the adventure moved to envelopes:
+- lock: 4-digit
