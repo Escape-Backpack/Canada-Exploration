@@ -1,6 +1,6 @@
 ---
 id: Q-003
-title: What do the two final locks use?
+title: What do the two final puzzles use?
 type: question
 # open | answered | parked
 status: open
@@ -22,3 +22,5 @@ tags: []
 - Suggestion only (Claude): each stop gives its roadside oddity as a fridge magnet, and Magnetic Hill (PZ-005) is where the collection starts. Not chosen.
 - Designer (2026-10-22): the quirky roadside attractions go on the **back of the postcards** (art side). Don't lean on them much inside the stop puzzles.
 - Q-004 already lists several roadside giants (Nackawic axe, Big Nickel, Vegreville pysanka).
+
+**2026-10-22:** no locks any more (PR-009); the two finals are the last two coded envelopes. Title changed from "What do the two final locks use?".

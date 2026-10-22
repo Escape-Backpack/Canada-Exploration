@@ -3,7 +3,7 @@ id: Q-001
 title: Add lock types, or keep the four defaults?
 type: question
 # open | answered | parked
-status: answered
+status: parked
 # Records this question is about, e.g. [PZ-003]
 about: [PR-003]
 # Leave empty while open
@@ -11,7 +11,7 @@ answer: Keep the four defaults, weighted toward the light ones. 6x 3-digit, 4x 3
 # Any related record IDs, e.g. [PZ-002, Q-004]
 links: []
 # Set to an ID when this record is replaced. It then moves to the Parked tab.
-superseded_by:
+superseded_by: PR-009
 tags: []
 ---
 
@@ -22,3 +22,5 @@ would each repeat about four times.
 
 Answered 2026-09-30. Weight: 3-digit lightest, colour light, 4-digit medium, 4-letter heaviest, so cap 4-letter at 2-3.
 Locks carry a visible number 1-15 (opening order; finals are 14 and 15). Still to check: colour clues work for colour-blind players.
+
+**2026-10-22: parked.** There are no locks (PR-009). Answers are now 4-5 character envelope codes, so the lock types, weights and the 1-15 lock numbers above describe the lock version only.

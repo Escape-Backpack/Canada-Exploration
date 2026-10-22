@@ -9,7 +9,7 @@ about: [PZ-001, PZ-002]
 # Leave empty while open
 answer:
 # Any related record IDs, e.g. [PZ-002, Q-004]
-links: []
+links: [PR-009]
 # Set to an ID when this record is replaced. It then moves to the Parked tab.
 superseded_by:
 tags: []
@@ -20,3 +20,5 @@ On 2026-10-12 the designer moved every adventure from locks in a backpack to mar
 - **PZ-001 and PZ-002** were designed for 4-digit locks and have no answer yet. Their answers become envelope codes.
 - **Premise records** that mention the backpack as the container.
 - **Cipher**: backpack.json uses the kit's plain `shapes` preset (digits 0-9) and 2 decoy envelopes as a placeholder. Not chosen by the designer. Each adventure should get its own look (Space uses planets).
+
+**2026-10-22 (designer): envelopes with codes, like Norse.** Recorded in PR-009; PR-003, Q-001 and Q-002 updated. Still open here: the backpack premise (PR-005) and the cipher's look.

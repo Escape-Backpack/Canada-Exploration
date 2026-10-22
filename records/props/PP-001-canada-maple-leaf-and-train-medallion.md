@@ -11,6 +11,7 @@ links: [PR-004]
 superseded_by:
 tags: []
 ---
+
 ## Selected design
 The first stylised leaf was rejected on 2026-10-05; v2 uses the existing maple-leaf SVG outline.
 On 2026-10-05 the designer requested this medallion and selected maple leaf and train.
@@ -32,3 +33,5 @@ Return the medallion to its assigned final-prize location once chosen.
 
 ## Replacement
 Reprint from AS-003; no consumables or assembly are needed for the medallion itself.
+
+**2026-10-22:** no locks any more (PR-009). The "final-lock release" above means the last envelope.

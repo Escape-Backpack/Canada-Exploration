@@ -48,3 +48,5 @@ Order is roughly east to west, then north. Lock types follow Q-001 (6x 3-digit, 
 
 Notes: NT and NU are the thinnest facts. NL uses Marconi, not the Vikings, to avoid overlapping Norse.
 Shediac lobster is dropped from the list (one New Brunswick stop only). Still open: verify every fact, and confirm the parents' real route and order.
+
+**2026-10-22:** the Lock column comes from the lock version. There are no locks now (PR-009); each answer is a 4-5 character envelope code.

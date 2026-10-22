@@ -18,3 +18,5 @@ Two recurring elements, one per lock:
 - a **souvenir and fun fact** from the place they visited.
 Pouches are numbered to match the locks (1-15).
 Decided 2026-09-30.
+
+**2026-10-22:** no locks or pouches any more (PR-009). Read "one per lock" as one per envelope; the pouch numbers 1-15 no longer apply. Postcards versus travel-book pages is still open (Q-008).

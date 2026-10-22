@@ -18,3 +18,5 @@ tags: []
 Postcards, passport stamps, photos, a map, souvenirs from each stop...?
 
 Answered 2026-09-30. The Norse postcard format is deliberately not reused.
+
+**2026-10-22:** no locks any more (PR-009): read "one per lock" as one per envelope. The backpack versus box question is in Q-007.
