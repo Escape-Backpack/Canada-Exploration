@@ -22,8 +22,8 @@ tags: [long-way-home]
 ---
 
 Idea (2026-10-22, designer). A map of Churchill for PZ-009, split into a grid of squares: Hudson Bay, town, old dump and open tundra. North up, bay along the top.
-**Designer choices (2026-10-22):** the mockup's 5x6 grid as is; 7 x 5 in card; no square labels until PZ-009's answer format is chosen. v1 drawn: AS-005.
-Open: square labels; title wording and map font; bleed and card stock; which envelope it comes in.
+**Designer choices (2026-10-22):** the mockup's 5x6 grid as is; 7 x 5 in card; no square labels until PZ-009's answer format is chosen. Current illustrated map: AS-006 (supersedes AS-005), with designer-requested 0.125 in bleed and unchanged 0.82 in squares.
+Open: square labels; title wording and map font; card stock; which envelope it comes in.
 
 ## Player sees
 <!-- Shown on the play-test page when the prop has no image file. -->
