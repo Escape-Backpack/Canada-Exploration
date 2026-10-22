@@ -28,7 +28,7 @@ test_method:
 # Any related record IDs, e.g. [PZ-002, Q-004]
 links: [Q-004]
 # Set to an ID when this record is replaced. It is then hidden unless the board's "parked" filter is on.
-superseded_by:
+superseded_by: PZ-018
 tags: [long-way-home]
 ---
 

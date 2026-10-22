@@ -23,3 +23,5 @@ Options on the table:
 - Postcards replace the travel-book pages (Q-006 and PR-006 change).
 - Postcards only for some stops, travel-book pages for the rest.
 - Keep travel-book pages, written in a postcard-like voice.
+
+2026-10-22 (Magnetic Hill session): the designer plans a postcard for NB too (PZ-018), with a quirky roadside attraction on the art side (Q-003). Still open as a whole-game decision.
