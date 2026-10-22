@@ -7,7 +7,7 @@ status: idea
 # The structure beat this puzzle belongs to (one ID)
 beat:
 # Props the player needs, e.g. [PP-001]
-props: [PP-002, PP-003, PP-004, PP-005]
+props: [PP-002, PP-004, PP-005]
 # Puzzles that must be solved first, e.g. [PZ-002]
 needs: []
 # cipher | physical | search | logic | wordplay | other
@@ -39,7 +39,7 @@ Idea only, nothing decided (2026-10-22). Source: *The Long Way Home* mockup (`th
 - Mockup answer: 29 (old male's square). Checked by brute force on 2026-10-22: the mockup grid has exactly one solution (mother 73, old male 29, young male 32 in its square labels).
 - **Designer idea (2026-10-22):** a postcard mentions visiting Churchill and seeing the polar bear jail, and the officials needing to move those 3 bears/pairs to different areas. A map goes with it.
 - Q-004 draft lists the Narcisse snake dens for MB instead.
-- **Designer choices (2026-10-22):** the postcard (PP-002) tells the story; the 6 rules go on a separate notice card (PP-003); a Churchill map (PP-004); 3 cardboard bear tokens (PP-005).
+- **Designer choices (2026-10-22):** the postcard (PP-002) tells the story and carries the 6 rules (the separate notice card PP-003 was parked the same day); a Churchill map (PP-004); 3 cardboard bear tokens (PP-005).
 - **Open:** answer format (envelope answers are 4-5 characters; the mockup gives 2 digits). Designer: decide later, once the grid is final. Option raised: read two bears' squares as 4 digits, which the postcard or rules would need to point to.
 
 ## Clue wording

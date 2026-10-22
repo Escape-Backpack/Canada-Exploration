@@ -3,7 +3,7 @@ id: PP-003
 title: Polar bear release rules notice
 type: prop
 # idea | candidate | decided | built | parked
-status: idea
+status: parked
 # physical | printed | digital
 form: printed
 # make | buy | print | 3d-print
@@ -17,7 +17,7 @@ reset_name:
 # Any related record IDs, e.g. [PZ-002, Q-004]
 links: []
 # Set to an ID when this record is replaced. It is then hidden unless the board's "parked" filter is on.
-superseded_by:
+superseded_by: PP-002
 tags: [long-way-home]
 ---
 
@@ -29,3 +29,5 @@ Starting point: the 6 rules in PZ-009 (from the mockup). Wording not written yet
 
 ## Reset
 <!-- Optional: how to put it back, e.g. "Fold along the creases". Shown on the public reset page. -->
+
+Parked 2026-10-22 (designer): the rules moved onto the postcard, PP-002.
