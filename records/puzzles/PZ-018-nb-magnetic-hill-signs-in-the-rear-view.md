@@ -42,13 +42,22 @@ Idea, designer's direction (2026-10-22). Replaces PZ-005 (mockup's reversed-bear
 - **Hand-drawn mirrored sketches** of the road signs they saw in the rear-view mirror while rolling backwards. The signs show numbers. Designer's example: "Steep hill 9%", "Next Tim Hortons 3 km", "Speed limit 20 km/h" gives 9320.
 - **Map** of the hill road showing where the signs are. Notes such as "the second sign we passed gave us cravings for donuts" tell players the order.
 
+**Designer chose (2026-10-22):** 4 signs, one without a number, and a generic donut shop (no brand). Bottom to top, the order passed while rolling backwards:
+1. Steep hill 9%
+2. Next donut shop 3 km
+3. Moose crossing (no number)
+4. Speed limit 20 km/h
+
+Rolling order gives 9320; reading the map top-down gives the wrong 2039. The note "the second sign we passed gave us cravings for donuts" only works counting from the bottom, so it fixes the direction.
+The map shows each sign as its pictogram/shape on its post, without numbers or text, so sketches match map spots.
+
+**Paper mockup v1 (2026-10-22):** `assets/magnetic-hill/Magnetic_Hill_Mockup_v1.pdf` (Letter page, map card 7 x 5 in + mirror sketches card 7 x 4 in), built by `source/build_magnetic_hill_v1.py`. Not paper-tested. No postcard text and no sketch-card header yet (designer's wording).
+
 **Intended aha:** they rolled backwards, so the signs are passed from the bottom up, the reverse of the order when driving down.
 
 **Open:**
 - Answer (4-5 digits; the shapes cipher encodes digits only). 9320 is an example, not chosen.
-- Order must be unique: with 3 signs, "the second sign" is the middle one from either end, so it does not fix the direction. Options: 4 signs (one without a number), or anchor the first or last sign.
-- What the map shows at each sign (shape/colour of the sign, no text?) so sketches match map spots.
-- Sign wording: brand name ("Tim Hortons") vs a generic donut shop; "steep hill 9%" is fiction on a gentle real slope (fine as a joke, or soften).
+- "Steep hill 9%" is fiction on a gentle real slope (fine as a joke, or soften). NB speed signs read "MAXIMUM" rather than "SPEED LIMIT" (to verify).
 - Postcard wording (designer writes it).
 
 ## Clue wording
