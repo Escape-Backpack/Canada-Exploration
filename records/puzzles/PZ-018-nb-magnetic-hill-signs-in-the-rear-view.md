@@ -7,7 +7,7 @@ status: idea
 # The structure beat this puzzle belongs to (one ID)
 beat:
 # Props the player needs, e.g. [PP-001]
-props: []
+props: [PP-006]
 # Puzzles that must be solved first, e.g. [PZ-002]
 needs: []
 # cipher | physical | search | logic | wordplay | other

@@ -15,11 +15,11 @@ file: assets/churchill-postcard/Churchill_Postcard_01_Vintage_Travel_Poster_v1.p
 # Any related record IDs, e.g. [PZ-002, Q-004]
 links: [PZ-009]
 # Set to an ID when this record is replaced. It then moves to the Parked tab.
-superseded_by:
+superseded_by: AS-012
 tags: [long-way-home]
 ---
 
-Four candidate art directions generated at the designer's request on 2026-10-22. No final style selected and no changes to the postcard text, puzzle rules or answers. Intended format: landscape 6 x 4 in front, matching the PP-002 text-side format.
+Four candidate art directions generated at the designer's request on 2026-10-22. The designer subsequently selected option 2; the current art selection is AS-012. No changes to postcard text, puzzle rules or answers. Intended format: landscape 6 x 4 in front, matching the PP-002 text-side format.
 
 ## Options and files
 1. Vintage travel poster: `assets/churchill-postcard/Churchill_Postcard_01_Vintage_Travel_Poster_v1.png`.
@@ -32,4 +32,4 @@ Side-by-side gallery: `assets/churchill-postcard/Churchill_Postcard_Style_Option
 ## Prompts and limitations
 Verbatim prompt set: `source/churchill_postcard_style_prompts_v1.md`. All four use built-in ImageGen; the fourth uses generated photographic-style imagery, not authentic photos. Facility architecture in the concepts is interpretive, not an exact documented replica. Source context links are in the prompt file.
 
-Concept images only: screen review, no physical print or player test. Final style, crop, exact typography and print/bleed preparation await the designer's choice. Status candidate records that these are options, not an approved art direction.
+Historical concept images: screen review, no physical print or player test. Selection and subsequent print preparation are tracked by AS-012. These alternatives are retained for comparison.

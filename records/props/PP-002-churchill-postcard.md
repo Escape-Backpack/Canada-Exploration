@@ -43,7 +43,9 @@ Idea (2026-10-22, designer). A postcard in the parents' voice from Churchill, MB
 
 **Font (designer, 2026-10-22): Indie Flower** (Google Fonts, SIL OFL), chosen over Caveat, Kalam, Patrick Hand, Shadows Into Light Two and Gochi Hand. Not used in Norse or Space. File: `EscapeBackpack/Fonts/Indie_Flower/IndieFlower-Regular.ttf`. Measured fit: 11 pt with 1.3 line spacing on the 6 x 4 in text side (0.3 in margins). Not paper-tested.
 
-Open: a line saying which bear(s) give the code, once PZ-009's answer format is chosen; the art side; which envelope it comes in; Q-008.
+**Art side (designer, 2026-10-22):** the watercolour travel sketch, option 2 from the four concepts, is selected. Current art: AS-012.
+
+Open: a line saying which bear(s) give the code, once PZ-009's answer format is chosen; print/bleed preparation; which envelope it comes in; Q-008.
 
 ## Player sees
 <!-- Shown on the play-test page when the prop has no image file. -->
