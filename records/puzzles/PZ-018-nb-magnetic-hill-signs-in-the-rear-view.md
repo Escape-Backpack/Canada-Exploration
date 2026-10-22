@@ -37,28 +37,33 @@ Idea, designer's direction (2026-10-22). Replaces PZ-005 (mockup's reversed-bear
 
 **Real fact:** Magnetic Hill (Moncton) is an optical illusion. You drive to the bottom, shift into neutral, and the car rolls backwards, apparently uphill; the road actually slopes gently downhill. Checked against Wikipedia, Atlas Obscura and CTV (2026-10-22). The mockup's "white post" was not confirmed; sources disagree on paved vs gravel.
 
-**Designer's direction:**
-- **Postcard:** talks about Magnetic Hill and what the parents did. The quirky roadside attraction goes on the postcard's back (art side), see Q-003; keep the roadside theme out of the puzzle itself.
-- **Hand-drawn mirrored sketches** of the road signs they saw in the rear-view mirror while rolling backwards. The signs show numbers. Designer's example: "Steep hill 9%", "Next Tim Hortons 3 km", "Speed limit 20 km/h" gives 9320.
-- **Map** of the hill road showing where the signs are. Notes such as "the second sign we passed gave us cravings for donuts" tell players the order.
+**Designer's direction (2026-10-22, second version):**
+- **Postcard:** talks about Magnetic Hill and what the parents did, and gives "right before / right after" clues about landmarks. The quirky roadside attraction goes on the postcard's back (art side), see Q-003; keep the roadside theme out of the puzzle itself.
+- **Map:** the hill road with landmarks only (farm, intersection, pond, lookout), drawn in driving order (arrows down to the bottom). No signs: players place them.
+- **Hand-drawn mirrored sketches:** the 4 road signs seen in the rear-view mirror while rolling backwards, in shuffled order. Some sketches show a landmark too.
+- **Magnetic Hill matters:** going the wrong direction gives a different order, not just the reverse. (First version had the signs on the map, so only two orders were possible; designer rejected it.)
 
-**Designer chose (2026-10-22):** 4 signs, one without a number, and a generic donut shop (no brand). Bottom to top, the order passed while rolling backwards:
-1. Steep hill 9%
-2. Next donut shop 3 km
-3. Moose crossing (no number)
-4. Maximum 20 km/h (designer: use MAXIMUM, as on real signs)
+**Signs (designer chose 4, one without a number, generic donut shop, MAXIMUM wording):** Steep hill 9%, Next donut shop 3 km, Moose crossing (no number), MAXIMUM 20 km/h.
 
-Rolling order gives 9320; reading the map top-down gives the wrong 2039. The note "the second sign we passed gave us cravings for donuts" only works counting from the bottom, so it fixes the direction.
-The map shows each sign as its pictogram/shape on its post, without numbers or text, so sketches match map spots.
+**Clue logic (agreed 2026-10-22; clue wording still to write):** "before/after" depend on travel direction. Rolling backwards up the hill, the rear-view mirror shows where the car is going, so a landmark seen behind a sign in the mirror comes right after that sign.
+| Sign | Clue | Rolling up (correct) | Driving down (trap) |
+|---|---|---|---|
+| Steep hill 9% | right before the farm | below the farm | above the farm |
+| Next donut shop 3 km | right after the farm | farm-intersection | below the farm |
+| Moose crossing | mirror sketch: pond just beyond the sign | intersection-pond | pond-lookout |
+| MAXIMUM 20 km/h | right after the pond | pond-lookout | intersection-pond |
 
-**Paper mockup v1 (2026-10-22):** `assets/magnetic-hill/Magnetic_Hill_Mockup_v1.pdf` (Letter page, map card 7 x 5 in + mirror sketches card 7 x 4 in), built by `source/build_magnetic_hill_v1.py`. Not paper-tested. No postcard text and no sketch-card header yet (designer's wording).
+- Correct, bottom to top: 9 · 3 · moose · 20 = 9320.
+- Wrong direction, read in driving order: 2093. Half-right mixes: 2039 and 3920.
+- The intersection separates the farm pair from the pond pair; the lookout is a decoy at the top.
+- Optional confirmation or hint: "the second sign we passed gave us cravings for donuts".
 
-**Intended aha:** they rolled backwards, so the signs are passed from the bottom up, the reverse of the order when driving down.
+**Paper mockups:** v1 (signs on the map, rejected) and v2 (landmarks only, moose sketch shows the pond) in `assets/magnetic-hill/`, built by `source/build_magnetic_hill_v1.py` / `_v2.py`. Not paper-tested. No postcard text and no sketch-card header yet (designer's wording).
 
 **Open:**
-- Answer (4-5 digits; the shapes cipher encodes digits only). 9320 is an example, not chosen.
-- "Steep hill 9%" is fiction on a gentle real slope (fine as a joke, or soften).
-- Postcard wording (designer writes it).
+- Answer (4-5 digits; the shapes cipher encodes digits only). 9320 is the example, not chosen.
+- Postcard wording with the 3 clues (designer writes it).
+- "Steep hill 9%" is fiction on a gentle real slope (fine as a joke, or soften). The landmarks are generic, not the real site's.
 
 ## Clue wording
 
