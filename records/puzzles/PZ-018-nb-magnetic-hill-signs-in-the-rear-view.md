@@ -46,7 +46,7 @@ Idea, designer's direction (2026-10-22). Replaces PZ-005 (mockup's reversed-bear
 1. Steep hill 9%
 2. Next donut shop 3 km
 3. Moose crossing (no number)
-4. Speed limit 20 km/h
+4. Maximum 20 km/h (designer: use MAXIMUM, as on real signs)
 
 Rolling order gives 9320; reading the map top-down gives the wrong 2039. The note "the second sign we passed gave us cravings for donuts" only works counting from the bottom, so it fixes the direction.
 The map shows each sign as its pictogram/shape on its post, without numbers or text, so sketches match map spots.
@@ -57,7 +57,7 @@ The map shows each sign as its pictogram/shape on its post, without numbers or t
 
 **Open:**
 - Answer (4-5 digits; the shapes cipher encodes digits only). 9320 is an example, not chosen.
-- "Steep hill 9%" is fiction on a gentle real slope (fine as a joke, or soften). NB speed signs read "MAXIMUM" rather than "SPEED LIMIT" (to verify).
+- "Steep hill 9%" is fiction on a gentle real slope (fine as a joke, or soften).
 - Postcard wording (designer writes it).
 
 ## Clue wording
