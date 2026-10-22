@@ -15,11 +15,13 @@ file: assets/churchill-map/Churchill_Map_v2_Preview.png
 # Any related record IDs, e.g. [PZ-002, Q-004]
 links: [PZ-009, PP-002, PP-005]
 # Set to an ID when this record is replaced. It then moves to the Parked tab.
-superseded_by:
+superseded_by: AS-007
 tags: [long-way-home]
 ---
 
 Created 2026-10-22 at the designer's request. Supersedes AS-005, whose source and output files remain unchanged.
+
+Designer rejected this visual direction on 2026-10-22 and requested a fresh start from v1. Superseded by AS-007; retained only as history.
 
 Hand-drawn illustrated terrain: textured blue bay and inlet, connected gravel streets and detailed buildings, dark gravel dump with rusty scrap and tires, and moss/lichen tundra with rocks and small enclosed ponds. This is a fictional schematic landscape, not a geographically accurate map of Churchill.
 

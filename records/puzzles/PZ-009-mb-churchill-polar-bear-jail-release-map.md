@@ -41,6 +41,7 @@ Idea only, nothing decided (2026-10-22). Source: *The Long Way Home* mockup (`th
 - Q-004 draft lists the Narcisse snake dens for MB instead.
 - **Designer choices (2026-10-22):** the postcard (PP-002) tells the story and carries the 6 rules (the separate notice card PP-003 was parked the same day); a Churchill map (PP-004); 3 cardboard bear tokens (PP-005).
 - **Open:** answer format (envelope answers are 4-5 characters; the mockup gives 2 digits). Designer: decide later, once the grid is final. Option raised: read two bears' squares as 4 digits, which the postcard or rules would need to point to.
+- **Answer format (designer, 2026-10-22): zone numbers.** Each square gets a printed 2-digit release-zone number; the answer is two bears' zones read in order (4 digits). Open: the 30 numbers, which two bears and in what order, and the postcard line that points to them.
 
 ## Clue wording
 

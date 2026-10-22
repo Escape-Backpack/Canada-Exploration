@@ -22,7 +22,7 @@ tags: [long-way-home]
 ---
 
 Idea (2026-10-22, designer). A map of Churchill for PZ-009, split into a grid of squares: Hudson Bay, town, old dump and open tundra. North up, bay along the top.
-**Designer choices (2026-10-22):** the mockup's 5x6 grid as is; 7 x 5 in card; no square labels until PZ-009's answer format is chosen. Current illustrated map: AS-006 (supersedes AS-005), with designer-requested 0.125 in bleed and unchanged 0.82 in squares.
+**Designer choices (2026-10-22):** the mockup's 5x6 grid as is; 7 x 5 in card; no square labels until PZ-009's answer format is chosen. Current map: AS-008, with designer-requested 0.125 in bleed and unchanged 0.82 in squares. Designer rejected AS-006's textured style: restart from v1 with a simple officer-office/street-map appearance. Terrain boundaries should follow the grid closely, but need not follow it exactly. After v3, designer requested a little more detail without making the map busy; v4 keeps that clean style.
 Open: square labels; title wording and map font; card stock; which envelope it comes in.
 
 ## Player sees
