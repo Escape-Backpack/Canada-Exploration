@@ -15,7 +15,7 @@ file: assets/churchill-map/Churchill_Map_v4_Preview.png
 # Any related record IDs, e.g. [PZ-002, Q-004]
 links: [PZ-009, PP-002, PP-005]
 # Set to an ID when this record is replaced. It then moves to the Parked tab.
-superseded_by:
+superseded_by: AS-009
 tags: [long-way-home]
 ---
 
