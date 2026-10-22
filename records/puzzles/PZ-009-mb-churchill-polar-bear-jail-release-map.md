@@ -16,7 +16,7 @@ mechanic: logic
 difficulty:
 # 4-5 characters the cipher can encode (see backpack.json). The envelope it opens is marked
 # with the matching symbols; props with envelope: <this ID> go inside.
-answer:
+answer: 7329
 # What players call this puzzle on the hint page, e.g. "The luggage tag" (spoiler-free)
 hint_title:
 # Explicit opt-in for the PUBLIC hint page. Candidates are never published.
@@ -41,7 +41,19 @@ Idea only, nothing decided (2026-10-22). Source: *The Long Way Home* mockup (`th
 - Q-004 draft lists the Narcisse snake dens for MB instead.
 - **Designer choices (2026-10-22):** the postcard (PP-002) tells the story and carries the 6 rules (the separate notice card PP-003 was parked the same day); a Churchill map (PP-004); 3 cardboard bear tokens (PP-005).
 - **Open:** answer format (envelope answers are 4-5 characters; the mockup gives 2 digits). Designer: decide later, once the grid is final. Option raised: read two bears' squares as 4 digits, which the postcard or rules would need to point to.
-- **Answer format (designer, 2026-10-22): zone numbers.** Each square gets a printed 2-digit release-zone number; the answer is two bears' zones read in order (4 digits). Open: the 30 numbers, which two bears and in what order, and the postcard line that points to them.
+- **Paper test watch (2026-10-22):** do players treat the east riverbank as "shore" for rule 4? See PP-004; the designer keeps the river for now.
+- **Answer format (designer, 2026-10-22): zone numbers.** Each square gets a printed 2-digit release-zone number; the answer is two bears' zones read in order (4 digits). The postcard line pointing to them is in PP-002; the numbers are on the map (AS-014).
+- **Zone numbers (designer, 2026-10-22): the mockup's set.** Row 1 is the bay (north), column 1 the west:
+
+  | Row | Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 |
+  |---|---|---|---|---|---|---|
+  | 1 | 71 | 52 | 38 | 90 | 47 | 15 |
+  | 2 | 63 | 84 | 26 | 11 | 58 | 29 |
+  | 3 | 44 | 17 | 95 | 32 | 76 | 60 |
+  | 4 | 23 | 69 | 81 | 54 | 12 | 87 |
+  | 5 | 35 | 98 | 41 | 66 | 73 | 20 |
+
+  Solution zones: mother and cub 73, old male 29, young male 32. Answer **7329** = mother's zone, then the old male's (the order Claude proposed with the mockup numbers; designer chose that option). If a player counts the east riverbank as shore, the old male could be read as zone 60, giving 7360 (see PP-004).
 
 ## Clue wording
 
