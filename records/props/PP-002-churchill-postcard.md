@@ -48,7 +48,8 @@ Idea (2026-10-22, designer). A postcard in the parents' voice from Churchill, MB
 
 **Art review (Claude, 2026-10-22):** AS-012 is 1536 x 1024 px, about 246 ppi on a 6.25 x 4.25 in card with bleed, so it needs upscaling to about 1875 px wide (300 ppi) before print. The lettering ("Churchill, Manitoba", "Polar Bear Holding Facility") is painted into the image: changing it means regenerating the art. The building is an interpretation, not checked against the real facility.
 **Code line (designer's wording, 2026-10-22):** "we only got to see two relocations: the mother first, then the old male." Placed after rule 6, before the signature. Kept exactly as typed, including the lowercase "we". With it, the text still fits at 11 pt in Indie Flower (17 of 17 lines).
-Open: upscale and print/bleed preparation; which envelope it comes in; Q-008.
+**Text side built (2026-10-22):** AS-015, Indie Flower at 10.75 pt.
+Open: upscale the art side and its print/bleed preparation; which envelope it comes in; Q-008.
 
 ## Player sees
 <!-- Shown on the play-test page when the prop has no image file. -->
